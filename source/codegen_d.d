@@ -733,6 +733,9 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 			case OGLDocumentationType.TableEntry:
 				suffix = "entry";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.Copyright:
+				ret ~= "&copy;";
+				return;
 			case OGLDocumentationType.Trademark:
 				ret ~= "&trade;";
 				return;

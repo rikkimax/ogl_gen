@@ -52,6 +52,7 @@ enum OGLDocumentationType {
 	Footnote,
 	InlineEquation,
 	Trademark,
+	Copyright,
 	Link,
 
 	MathMLContainer,
