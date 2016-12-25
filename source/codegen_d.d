@@ -799,7 +799,6 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Paragraph:
-				macroPrefix = "P";
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Container:

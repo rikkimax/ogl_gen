@@ -177,18 +177,8 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 						j++;
 					}
 
-					if (paras.length == 1) {
-						family.docs_parameters[i].documentation.value_children ~= OGLDocumentation(OGLDocumentationType.Text, paras[0].nodeValue);
-						auto children = paras[0].childNodes;
-						foreach(childI; 0 .. children.length) {
-							family.docs_parameters[i].documentation.evaluateDocs(children.item(childI));
-						}
-					}
-					else {
-						foreach(para; paras) {
-							family.docs_parameters[i].documentation.evaluateDocs(para);
-						}
-					}
+					foreach (para; paras)
+						family.docs_parameters[i].documentation.evaluateDocs(para);
 
 					i++;
 				}
