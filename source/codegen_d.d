@@ -31,7 +31,7 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, string filename, string mod
 		prefix = "    ";
 	}
 
-	prefixComment = prefix ~ " * ";
+	prefixComment = prefix ~ " + ";
 
 	if (modulename !is null) {
 		ret ~= "
@@ -558,12 +558,12 @@ private {
 				ret ~= "\n";
 
 				ret ~= prefix;
-				ret ~= "/**\n";
+				ret ~= "/++\n";
 
 				ret.genDDOC(family, prefixComment);
 
 				ret ~= prefix;
-				ret ~= " */\n";
+				ret ~= " +/\n";
 			} else {
 				ret ~= prefix;
 				ret ~= "/// Ditto\n";
@@ -827,12 +827,6 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 			case OGLDocumentationType.Text:
 				size_t i;
 				string lines = value_string;
-				
-				if (functionFamily == "glBindTextures") {
-					lines = lines.replace("/* target of textures[i] */;", "/+ target of textures[i] +/;");
-				} else if (functionFamily == "glCreateShaderProgram") {
-					lines = lines.replace("/* append-shader-info-log-to-program-info-log */", "/+ append-shader-info-log-to-program-info-log +/");
-				}
 				
 				string linesOld = lines;
 				lines = lines
