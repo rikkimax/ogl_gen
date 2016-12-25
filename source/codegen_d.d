@@ -655,21 +655,45 @@ void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
 	ret ~= prefix;
 	ret ~= "Params:\n";
 
+	size_t longestParam = 0;
 	foreach(ref param; family.docs_parameters) {
-		ret ~= prefix2;
-
+		size_t length = 1;
 		foreach(i, name; param.appliesToNames) {
 			if (i > 0) {
-				ret ~= ", ";
+				length += ", ".length;
 			}
 
 			if (name == "ref")
-				ret ~= "ref_";
+				length += "ref_".length;
 			else
+				length += name.length;
+		}
+		if (length > longestParam)
+			longestParam = length;
+	}
+
+	foreach(ref param; family.docs_parameters) {
+		ret ~= prefix2;
+
+		size_t length = 0;
+		foreach(i, name; param.appliesToNames) {
+			if (i > 0) {
+				ret ~= ", ";
+				length += ", ".length;
+			}
+
+			if (name == "ref") {
+				ret ~= "ref_";
+				length += "ref_".length;
+			} else {
 				ret ~= name;
+				length += name.length;
+			}
 		}
 
-		ret ~= "    =    ";
+		for (size_t i = 0; i < longestParam - length; i++)
+			ret ~= ' ';
+		ret ~= "= ";
 		ret.genDDOC(family.familyOfFunction, param.documentation, "", prefix3);
 		ret ~= "\n";
 	}
