@@ -4,7 +4,7 @@ import defs;
 void gencode_d(OGLFunctionFamily[] functionFamilies, string filename, string modulename, bool isStatic, string containerStruct) {
 	import std.array : appender;
 
-	auto ret = appender!string();
+	char[] ret;
 
 	// For OpenGL 4.5 output from the "printers" is around 1mb,
 	//  so 6mb is beyond anything we'll actually need.
@@ -623,10 +623,10 @@ private {
 	}
 	
 	import std.file : write;
-	write(filename, ret.data);
+	write(filename, ret);
 }
 
-void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
+void genDDOC(T)(ref T ret, OGLFunctionFamily family, string prefix) {
 	string prefix2 = prefix ~ "    ";
 	string prefix3 = prefix ~ "                    ";
 
@@ -716,12 +716,12 @@ void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
 	ret ~= "\n";
 }
 
-void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext) {
+void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext) {
 	bool firstText=true;
 	genDDOC(ret, functionFamily, ctx, linetabs, linetabsNext, firstText);
 }
 
-void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext, ref bool firstText) {
+void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext, ref bool firstText) {
 	import std.string : splitLines, strip;
 	with(ctx) {
 		string suffix;
@@ -826,7 +826,9 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Container:
+				size_t preMacroPos = -1;
 				if (macroPrefix !is null) {
+					preMacroPos = ret.length;
 					ret ~= "$(";
 					ret ~= macroPrefix;
 					ret ~= " ";
@@ -836,8 +838,15 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 					ret ~= ">";
 				}
 				
+				size_t codePos = ret.length;
 				foreach(i, child; value_children)
 					ret.genDDOC(functionFamily, child, linetabs, linetabsNext, firstText);
+				if (codePos < ret.length && ret[codePos] == ' ' && preMacroPos != -1) {
+					// space inside macro, remove space and place it before macro
+					for (size_t i = codePos - 1; i >= preMacroPos; i--)
+						ret[i] = ret[i - 1];
+					ret[preMacroPos] = ' ';
+				}
 				
 				if (macroPrefix !is null) {
 					ret ~= ")";
