@@ -652,7 +652,13 @@ void genDDOC(T)(ref T ret, OGLFunctionFamily family, string prefix) {
 		ret ~= "\n";
 	}
 	
-	ret ~= prefix;
+	if (ret.length >= prefix.length * 2 + 2
+			&& ret[$ - prefix.length - 1 .. $ - 1] == prefix
+			&& ret[$ - prefix.length * 2 - 2 .. $ - prefix.length - 2] == prefix)
+		// 2 empty lines here already, no need for another one
+		ret.length--;
+	else
+		ret ~= prefix;
 	ret ~= "Params:\n";
 
 	size_t longestParam = 0;
@@ -779,6 +785,8 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 					// only start blocks for multiline code
 					startCodeBlock = startCodeBlock || child.value_string.canFind('\n');
 				}
+				if (!startCodeBlock)
+					macroPrefix = "D_INLINECODE";
 				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.Footnote:
 				suffix = "\\/footnote";
@@ -864,14 +872,17 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 				
 				if (startCodeBlock) {
 					if (ret.length >= linetabs.length && ret[$ - linetabs.length .. $] == linetabs)
-						ret ~= "---\n";
+						ret ~= "---\n" ~ linetabs;
 					else {
 						if (ret.length && ret[$ - 1] != '\n')
 							ret ~= '\n' ~ linetabs;
-						ret ~= "---\n";
+						ret ~= "---\n" ~ linetabs;
 					}
 				} else if (macroPrefix !is null) {
-					ret ~= ")";
+					if (macroPrefix == "D_INLINECODE" && ret.length && ret[$ - 1] == '\n')
+						ret[$ - 1] = ')';
+					else
+						ret ~= ")";
 				} else if (htmlTag !is null) {
 					ret ~= "</";
 					ret ~= htmlTag;
@@ -896,10 +907,8 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 					
 					string linesOld = lines;
 					lines = lines
-						.replace("NULL", "null").replace("== null", "is null")
-						.replace("{", "{\n").replace("}", "}\n")
-						.replace("; if", ";\n if").replace("; gl", ";\n gl").replace("; }", ";\n }")
-						.replace("}\n else {", "\n} else {");
+						.replace("NULL", "null")
+						.replace("== null", "is null");
 					
 					foreach(line; lines.splitLines) {
 						string lineStripped = line.strip;
@@ -913,7 +922,7 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 							firstText = false;
 							
 							if (linesOld != lines) {
-								ret ~= "\n";
+								ret ~= "\n" ~ linetabs;
 							}
 						}
 					}
