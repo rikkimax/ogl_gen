@@ -1,0 +1,5 @@
+#!/bin/sh
+DB5RNG=http://docbook.org/xml/5.0/rng/docbook.rng
+# or /usr/share/xml/docbook/schema/rng/5.0/docbook.rng
+
+xmllint --noout --xinclude --relaxng $DB5RNG $*

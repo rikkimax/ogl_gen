@@ -1,0 +1,109 @@
+
+
+.SUFFIXES: .l .y .o
+
+#
+# targets for lex and yacc
+#
+.l.c:
+	$(RM) $@
+	$(LEX) $(LFLAGS) $<
+	$(MV) lex.yy.c $@
+
+.y.c:
+	$(RM) $@
+	$(YACC) $(YFLAGS) $<
+	$(MV) y.tab.c $@
+
+.o.obj:
+	;
+
+#
+# target to create preprocessor output file from .c file (for debugging)
+#
+.c.i:
+	$(RM) $@
+	$(CC) $(USER_C_FLAGS) -E $< > $*.i
+
+#
+# main target (first) resolves to makefile.def's main target
+#
+default: all
+
+#
+# This has to be here, for dependencies
+#
+INCLUDES = $(VCINCS); $(LCINCS); $(GCINCS)
+
+
+#
+# cleaning targets
+#
+$(COMMONPREF)clobber: $(COMMONPREF)clobber_subdirs
+	$(RM) $(DIRT) $(TARGETS) obj$(BUILD_ALT_DIR)
+
+$(COMMONPREF)clean: $(COMMONPREF)clean_subdirs
+	$(RM) $(DIRT)
+
+$(COMMONPREF)rmtargets: $(COMMONPREF)rmtargets_subdirs
+	$(RM) $(TARGETS)
+
+#
+# targets to build distributions
+#
+!IF EXIST($(DISTFILE))
+!INCLUDE $(DISTFILE)
+!ENDIF
+
+$(COMMONPREF)distddk: $(COMMONPREF)distddk_subdirs
+	@$(INSTALL) $(INSTALLFLAGS) -F $(DIST)$(DISTDIR_DDK) $(DISTFILES_DDK)
+	@$(INSTALL) $(INSTALLFLAGS) -F $(DIST)$(DISTDIR_DDK) $(DISTFILES_DDK2)
+	@$(ECHO) ""
+
+$(COMMONPREF)clobber_subdirs:
+
+!IFDEF DIRS
+#
+# DIRS defined.  We have to do subdirectories
+#
+CLOBBER_SUBDIRS=$(DIRS:.dir=.clobber)
+CLEAN_SUBDIRS=$(DIRS:.dir=.clean)
+RMTARGETS_SUBDIRS=$(DIRS:.dir=.rmtargets)
+DISTDDK_SUBDIRS=$(DIRS:.dir=.distddk)
+
+$(COMMONPREF)clobber_subdirs: $(CLOBBER_SUBDIRS)
+
+$(COMMONPREF)clean_subdirs: $(CLEAN_SUBDIRS)
+
+$(COMMONPREF)rmtargets_subdirs: $(RMTARGETS_SUBDIRS)
+
+$(COMMONPREF)distddk_subdirs: $(DISTDDK_SUBDIRS)
+
+$(CLOBBER_SUBDIRS):
+	@cd $*
+	@echo === clobbering $* ===
+	@$(MAKE) -nologo -f Makefile.win32 clobber
+	@cd ..
+
+$(CLEAN_SUBDIRS):
+	@cd $*
+	@echo === cleaning $* ===
+	@$(MAKE) -nologo -f Makefile.win32 clean
+	@cd ..
+
+$(RMTARGETS_SUBDIRS):
+	@cd $*
+	@echo === removing targets in $* ===
+	@$(MAKE) -nologo -f Makefile.win32 rmtargets
+	@cd ..
+
+$(DISTDDK_SUBDIRS):
+	@cd $*
+	@echo === making DDK distribution in $* ===
+	@$(MAKE) -nologo -f Makefile.win32 distddk
+	@cd ..
+!ELSE
+
+$(COMMONPREF)clobber_subdirs $(COMMONPREF)clean_subdirs $(COMMONPREF)rmtargets_subdirs $(COMMONPREF)distddk_subdirs:
+
+!ENDIF

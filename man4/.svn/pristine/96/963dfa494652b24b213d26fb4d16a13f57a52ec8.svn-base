@@ -1,0 +1,65 @@
+default: convert
+
+# Where to find Docbook 4 man page sources
+OLDAPIMAN  = /home/tree/khronos/ogl/trunk/ecosystem/public/sdk/docs/man4
+OLDGLSLMAN = /home/tree/khronos/ogl/trunk/ecosystem/public/sdk/docs/manglsl
+
+# Converting Docbook 4 -> Docbook 5 - now use local (up to date) copy
+#DB4UPGRADE = /usr/share/xml/docbook/stylesheet/docbook5/db4-upgrade.xsl
+DB4UPGRADE = db4-upgrade.xsl
+DOCBOOK5CONV = xsltproc $(DB4UPGRADE)
+
+# FOR API
+
+# Files to copy from API parent directory (not legal Docbook 4)
+COPYAPIFILES = baseformattable.xml compressedformattable.xml internalformattable.xml texboformattable.xml
+
+# Must edit XIncludes to declare Docbook namespace, which DB4 doesn't allow
+# This works on either <table> or <informaltable> root elements
+$(COPYAPIFILES): $@
+	cp $(OLDAPIMAN)/$@ $@
+	sed -i \
+	    -e 's#<table>#<table xmlns="http://docbook.org/ns/docbook" version="5.0">#g' \
+	    -e 's#<informaltable>#<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0">#g' \
+	    $@
+
+SRCAPIXML = $(wildcard $(OLDAPIMAN)/gl[A-Z]*.xml $(OLDAPIMAN)/removedTypes.xml)
+APIXML = $(filter-out $(COPYAPIFILES),$(patsubst $(OLDAPIMAN)/%.xml,%.xml,$(SRCAPIXML)))
+
+$(APIXML): %.xml: $(OLDAPIMAN)/%.xml DOCTYPE.txt $(DB4UPGRADE)
+	cp DOCTYPE.txt $@
+	sed -e 's/&/AMPER/g' < $< | \
+	    $(DOCBOOK5CONV) - | \
+	    sed -e 's/AMPER/\&/g' >> $@
+
+# FOR GLSL
+# Files to copy from parent directory (not legal Docbook 4)
+COPYGLSLFILES = funchead.xml varhead.xml version.xml
+
+# Must edit XIncludes to declare Docbook namespace, which DB4 doesn't allow
+# This works on all root elements of XIncluded files
+$(COPYGLSLFILES): $@
+	cp $(OLDGLSLMAN)/$@ $@
+	sed -i \
+	    -e 's#<funchead>#<funchead xmlns="http://docbook.org/ns/docbook" version="5.0">#g' \
+	    -e 's#<varhead>#<varhead xmlns="http://docbook.org/ns/docbook" version="5.0">#g' \
+	    -e 's#<root>#<root xmlns="http://docbook.org/ns/docbook" version="5.0">#g' \
+	    $@
+
+SRCGLSLXML = $(wildcard $(OLDGLSLMAN)/*.xml)
+GLSLXML = $(filter-out $(COPYGLSLFILES),$(patsubst $(OLDGLSLMAN)/%.xml,%.xml,$(SRCGLSLXML)))
+
+$(GLSLXML): %.xml: $(OLDGLSLMAN)/%.xml DOCTYPE.txt $(DB4UPGRADE)
+	cp DOCTYPE.txt $@
+	sed -e 's/&/AMPER/g' < $< | \
+	    $(DOCBOOK5CONV) - | \
+	    sed -e 's/AMPER/\&/g' >> $@
+
+# Actually convert API and GLSL pages from Docbook4 -> Docbook 5
+convert: $(APIXML) $(COPYAPIFILES) $(GLSLXML) $(COPYGLSLFILES)
+	mv packUnorm2x16.xml packUnorm.xml
+	mv unpackUnorm2x16.xml unpackUnorm.xml
+
+# Remove generated targets
+clean clobber:
+	-rm -f $(APIXML) $(GLSLXML) $(COPYAPIFILES) $(COPYGLSLFILES)

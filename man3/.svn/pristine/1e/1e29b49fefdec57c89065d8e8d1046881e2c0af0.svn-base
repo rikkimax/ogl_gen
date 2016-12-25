@@ -1,0 +1,648 @@
+<?xml version="1.0"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="serif,Symbol,ZapfDingbats" font-size="10pt" text-align="justify" line-height="normal" font-selection-strategy="character-by-character" line-height-shift-adjustment="disregard-shifts" language="en"><fo:layout-master-set><fo:simple-page-master master-name="blank" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body display-align="center" margin-bottom="0.5in" margin-top="0.5in" region-name="blank-body"/><fo:region-before region-name="xsl-region-before-blank" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-blank" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-first" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-odd" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-even" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="blank-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-blank" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-blank" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="titlepage-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="lot-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="front-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="body-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="back-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="1" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-first-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-first" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-first" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-odd-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-left="1in" margin-right="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-odd" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-odd" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:simple-page-master master-name="index-even-draft" page-width="8.5in" page-height="11in" margin-top="0.5in" margin-bottom="0.5in" margin-right="1in" margin-left="1in"><fo:region-body margin-bottom="0.5in" margin-top="0.5in" column-gap="12pt" column-count="2" background-image="url(http://docbook.sourceforge.net/release/images/draft.png)" background-attachment="fixed" background-repeat="no-repeat" background-position-horizontal="center" background-position-vertical="center"/><fo:region-before region-name="xsl-region-before-even" extent="0.4in" display-align="before"/><fo:region-after region-name="xsl-region-after-even" extent="0.4in" display-align="after"/></fo:simple-page-master><fo:page-sequence-master master-name="titlepage"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="titlepage-first" page-position="first"/><fo:conditional-page-master-reference master-reference="titlepage-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="titlepage-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="lot"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="lot-first" page-position="first"/><fo:conditional-page-master-reference master-reference="lot-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="lot-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="front"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="front-first" page-position="first"/><fo:conditional-page-master-reference master-reference="front-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="front-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="body"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="body-first" page-position="first"/><fo:conditional-page-master-reference master-reference="body-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="body-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="back"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="back-first" page-position="first"/><fo:conditional-page-master-reference master-reference="back-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="back-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="index"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="index-first" page-position="first"/><fo:conditional-page-master-reference master-reference="index-odd" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="index-odd"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="titlepage-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="titlepage-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="titlepage-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="titlepage-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="lot-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="lot-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="lot-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="lot-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="front-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="front-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="front-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="front-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="body-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="body-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="body-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="body-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="back-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="back-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="back-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="back-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master><fo:page-sequence-master master-name="index-draft"><fo:repeatable-page-master-alternatives><fo:conditional-page-master-reference master-reference="blank-draft" blank-or-not-blank="blank"/><fo:conditional-page-master-reference master-reference="index-first-draft" page-position="first"/><fo:conditional-page-master-reference master-reference="index-odd-draft" odd-or-even="odd"/><fo:conditional-page-master-reference odd-or-even="even" master-reference="index-odd-draft"/></fo:repeatable-page-master-alternatives></fo:page-sequence-master></fo:layout-master-set><fo:page-sequence hyphenate="true" master-reference="body" language="en" format="1" initial-page-number="auto" force-page-count="no-force" hyphenation-character="-" hyphenation-push-character-count="2" hyphenation-remain-character-count="2"><fo:static-content flow-name="xsl-region-before-first"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-bottom-width="0.5pt" border-bottom-style="solid" border-bottom-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-before-odd"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-bottom-width="0.5pt" border-bottom-style="solid" border-bottom-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="before" relative-align="baseline"><fo:block><fo:block>glTexGen</fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-before-even"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-bottom-width="0.5pt" border-bottom-style="solid" border-bottom-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="before" relative-align="baseline"><fo:block><fo:block>glTexGen</fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-before-blank"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-bottom-width="0.5pt" border-bottom-style="solid" border-bottom-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="before" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-footnote-separator"><fo:block><fo:leader color="black" leader-pattern="rule" leader-length="1in"/></fo:block></fo:static-content><fo:static-content flow-name="blank-body"><fo:block text-align="center"/></fo:static-content><fo:static-content flow-name="xsl-region-after-first"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-top-width="0.5pt" border-top-style="solid" border-top-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="after" relative-align="baseline"><fo:block><fo:block><fo:page-number/></fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-after-odd"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-top-width="0.5pt" border-top-style="solid" border-top-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="after" relative-align="baseline"><fo:block><fo:block><fo:page-number/></fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-after-even"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-top-width="0.5pt" border-top-style="solid" border-top-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="after" relative-align="baseline"><fo:block><fo:block><fo:page-number/></fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:static-content flow-name="xsl-region-after-blank"><fo:block font-family="serif,Symbol,ZapfDingbats" margin-left="0pt"><fo:table table-layout="fixed" width="100%" border-top-width="0.5pt" border-top-style="solid" border-top-color="black"><fo:table-column column-number="1" column-width="1%"/><fo:table-column column-number="2" column-width="1%"/><fo:table-column column-number="3" column-width="1%"/><fo:table-body><fo:table-row height="14pt"><fo:table-cell text-align="left" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell><fo:table-cell text-align="center" display-align="after" relative-align="baseline"><fo:block><fo:block><fo:page-number/></fo:block></fo:block></fo:table-cell><fo:table-cell text-align="right" display-align="after" relative-align="baseline"><fo:block><fo:block/></fo:block></fo:table-cell></fo:table-row></fo:table-body></fo:table></fo:block></fo:static-content><fo:flow flow-name="xsl-region-body" start-indent="4pc" end-indent="0pt"><fo:block id="glTexGen"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2880359"><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">Name</fo:marker><fo:block font-size="17.28pt">Name</fo:block></fo:block></fo:block></fo:block><fo:block space-after="1em">glTexGen <fo:inline font-family="serif">--</fo:inline> control the generation of texture coordinates</fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2880368"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">C Specification</fo:marker><fo:block font-size="17.28pt">C Specification</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block id="id2880373" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGeni</fo:inline></fo:inline>(coord, pname, param);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> GLint param;</fo:block></fo:block></fo:block><fo:block id="id2812749" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGenf</fo:inline></fo:inline>(coord, pname, param);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> GLfloat param;</fo:block></fo:block></fo:block><fo:block id="id2812785" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGend</fo:inline></fo:inline>(coord, pname, param);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> GLdouble param;</fo:block></fo:block></fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2880459"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">PARAMETERS</fo:marker><fo:block font-size="17.28pt">PARAMETERS</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:list-block id="id2880463" provisional-distance-between-starts="5em" provisional-label-separation="1em" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em" space-after.optimum="1em" space-after.minimum="0.8em" space-after.maximum="1.2em"><fo:list-item id="id2880466" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">coord</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">coord</fo:inline></fo:inline><fo:block>
+                    Specifies a texture coordinate.
+                    Must be one of <fo:inline font-family="monospace">GL_S</fo:inline>, <fo:inline font-family="monospace">GL_T</fo:inline>, <fo:inline font-family="monospace">GL_R</fo:inline>, or <fo:inline font-family="monospace">GL_Q</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item><fo:list-item id="id2813084" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">pname</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">pname</fo:inline></fo:inline><fo:block>
+                    Specifies the symbolic name of the texture-coordinate generation function.
+                    Must be <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item><fo:list-item id="id2813106" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">param</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">param</fo:inline></fo:inline><fo:block>
+                    Specifies a single-valued texture generation parameter,
+                    one of <fo:inline font-family="monospace">GL_OBJECT_LINEAR</fo:inline>, <fo:inline font-family="monospace">GL_EYE_LINEAR</fo:inline>, <fo:inline font-family="monospace">GL_SPHERE_MAP</fo:inline>,
+                    <fo:inline font-family="monospace">GL_NORMAL_MAP</fo:inline>, or <fo:inline font-family="monospace">GL_REFLECTION_MAP</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item></fo:list-block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2813145"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">C Specification</fo:marker><fo:block font-size="17.28pt">C Specification</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block id="id2813150" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGeniv</fo:inline></fo:inline>(coord, pname, params);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> const GLint * params;</fo:block></fo:block></fo:block><fo:block id="id2813189" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGenfv</fo:inline></fo:inline>(coord, pname, params);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> const GLfloat * params;</fo:block></fo:block></fo:block><fo:block id="id2813228" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><fo:block font-family="monospace"><fo:inline font-family="monospace"> void <fo:inline font-weight="bold">glTexGendv</fo:inline></fo:inline>(coord, pname, params);<fo:block> GLenum coord;</fo:block><fo:block> GLenum pname;</fo:block><fo:block> const GLdouble * params;</fo:block></fo:block></fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2866986"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">PARAMETERS</fo:marker><fo:block font-size="17.28pt">PARAMETERS</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:list-block id="id2866991" provisional-distance-between-starts="6em" provisional-label-separation="1em" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em" space-after.optimum="1em" space-after.minimum="0.8em" space-after.maximum="1.2em"><fo:list-item id="id2866993" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">coord</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">coord</fo:inline></fo:inline><fo:block>
+                    Specifies a texture coordinate.
+                    Must be one of <fo:inline font-family="monospace">GL_S</fo:inline>, <fo:inline font-family="monospace">GL_T</fo:inline>, <fo:inline font-family="monospace">GL_R</fo:inline>, or <fo:inline font-family="monospace">GL_Q</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item><fo:list-item id="id2867025" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">pname</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">pname</fo:inline></fo:inline><fo:block>
+                    Specifies the symbolic name of the texture-coordinate generation function
+                    or function parameters.
+                    Must be
+                    <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>,
+                    <fo:inline font-family="monospace">GL_OBJECT_PLANE</fo:inline>, or
+                    <fo:inline font-family="monospace">GL_EYE_PLANE</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item><fo:list-item id="id2867057" space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em"><fo:list-item-label end-indent="label-end()" text-align="start"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">params</fo:inline></fo:inline></fo:block></fo:list-item-label><fo:list-item-body start-indent="body-start()"><fo:block><fo:inline><fo:inline font-style="italic" font-family="monospace">params</fo:inline></fo:inline><fo:block>
+                    Specifies a pointer to an array of texture generation parameters.
+                    If <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>,
+                    then the array must contain a single symbolic constant,
+                    one of
+                    <fo:inline font-family="monospace">GL_OBJECT_LINEAR</fo:inline>,
+                    <fo:inline font-family="monospace">GL_EYE_LINEAR</fo:inline>,
+                    <fo:inline font-family="monospace">GL_SPHERE_MAP</fo:inline>,
+                    <fo:inline font-family="monospace">GL_NORMAL_MAP</fo:inline>, or
+                    <fo:inline font-family="monospace">GL_REFLECTION_MAP</fo:inline>.
+                    Otherwise,
+                    <fo:inline font-style="italic" font-family="monospace">params</fo:inline> holds the coefficients for the texture-coordinate generation function
+                    specified by <fo:inline font-style="italic" font-family="monospace">pname</fo:inline>.
+                </fo:block></fo:block></fo:list-item-body></fo:list-item></fo:list-block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2867124"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">DESCRIPTION</fo:marker><fo:block font-size="17.28pt">DESCRIPTION</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:inline font-family="monospace">glTexGen</fo:inline> selects a texture-coordinate generation function
+            or supplies coefficients for one of the functions.
+            <fo:inline font-style="italic" font-family="monospace">coord</fo:inline> names one of the (<fo:inline font-style="italic">s</fo:inline>, <fo:inline font-style="italic">t</fo:inline>, <fo:inline font-style="italic">r</fo:inline>, <fo:inline font-style="italic">q</fo:inline>) texture
+            coordinates; it must be one of the symbols
+            <fo:inline font-family="monospace">GL_S</fo:inline>,
+            <fo:inline font-family="monospace">GL_T</fo:inline>,
+            <fo:inline font-family="monospace">GL_R</fo:inline>, or
+            <fo:inline font-family="monospace">GL_Q</fo:inline>.
+            <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> must be one of three symbolic constants:
+            <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>,
+            <fo:inline font-family="monospace">GL_OBJECT_PLANE</fo:inline>, or
+            <fo:inline font-family="monospace">GL_EYE_PLANE</fo:inline>.
+            If <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>,
+            then <fo:inline font-style="italic" font-family="monospace">params</fo:inline> chooses a mode,
+            one of
+            <fo:inline font-family="monospace">GL_OBJECT_LINEAR</fo:inline>,
+            <fo:inline font-family="monospace">GL_EYE_LINEAR</fo:inline>,
+            <fo:inline font-family="monospace">GL_SPHERE_MAP</fo:inline>,
+            <fo:inline font-family="monospace">GL_NORMAL_MAP</fo:inline>, or
+            <fo:inline font-family="monospace">GL_REFLECTION_MAP</fo:inline>.
+            If <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is either <fo:inline font-family="monospace">GL_OBJECT_PLANE</fo:inline> or <fo:inline font-family="monospace">GL_EYE_PLANE</fo:inline>,
+            <fo:inline font-style="italic" font-family="monospace">params</fo:inline> contains coefficients for the corresponding
+            texture generation function.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            If the texture generation function is <fo:inline font-family="monospace">GL_OBJECT_LINEAR</fo:inline>,
+            the function
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">g</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mrow>
+                            <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                            <mml:mn>1</mml:mn>
+                            </mml:msub>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">x</mml:mi>
+                            <mml:mi mathvariant="italic">o</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                            <mml:mn>2</mml:mn>
+                            </mml:msub>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">y</mml:mi>
+                            <mml:mi mathvariant="italic">o</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                            <mml:mn>3</mml:mn>
+                            </mml:msub>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">z</mml:mi>
+                            <mml:mi mathvariant="italic">o</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                            <mml:mn>4</mml:mn>
+                            </mml:msub>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">w</mml:mi>
+                            <mml:mi mathvariant="italic">o</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            is used, where 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">g</mml:mi></mml:math>
+            is the value computed for the coordinate named in <fo:inline font-style="italic" font-family="monospace">coord</fo:inline>,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>1</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>2</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>3</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>4</mml:mn>
+                </mml:msub>
+            </mml:math>
+            are the four values supplied in <fo:inline font-style="italic" font-family="monospace">params</fo:inline>, and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">x</mml:mi>
+                <mml:mi mathvariant="italic">o</mml:mi>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">y</mml:mi>
+                <mml:mi mathvariant="italic">o</mml:mi>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">z</mml:mi>
+                <mml:mi mathvariant="italic">o</mml:mi>
+                </mml:msub>
+            </mml:math>
+            , and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">w</mml:mi>
+                <mml:mi mathvariant="italic">o</mml:mi>
+                </mml:msub>
+            </mml:math>
+            are the object coordinates of the vertex.
+            This function can be used, for example, to texture-map terrain using sea level
+            as a reference plane
+            (defined by 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>1</mml:mn>
+                </mml:msub>
+            </mml:math>
+            , 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>2</mml:mn>
+                </mml:msub>
+            </mml:math>
+            , 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>3</mml:mn>
+                </mml:msub>
+            </mml:math>
+            , and 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>4</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ).
+            The altitude of a terrain vertex is computed by the <fo:inline font-family="monospace">GL_OBJECT_LINEAR</fo:inline>
+            coordinate generation function as its distance from sea level;
+            that altitude can then be used to index the texture image to map white snow
+            onto peaks and green grass onto foothills.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            If the texture generation function is <fo:inline font-family="monospace">GL_EYE_LINEAR</fo:inline>, the function
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:block id="id2812342" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">g</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mrow>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>1</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">x</mml:mi>
+                            <mml:mi mathvariant="italic">e</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>2</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">y</mml:mi>
+                            <mml:mi mathvariant="italic">e</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>3</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">z</mml:mi>
+                            <mml:mi mathvariant="italic">e</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                        <mml:mo>+</mml:mo>
+                        <mml:mrow>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>4</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>×</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">w</mml:mi>
+                            <mml:mi mathvariant="italic">e</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math></fo:block>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            is used, where
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:block id="id2873838" space-before.minimum="0.5em" space-before.optimum="1em" space-before.maximum="2em" space-after.minimum="0.5em" space-after.optimum="1em" space-after.maximum="2em"><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mfenced open="(" close=")">
+                        <mml:mrow>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>1</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>⁢</mml:mo>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>2</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>⁢</mml:mo>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>3</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                            <mml:mo>⁢</mml:mo>
+                            <mml:msup><mml:mfenced open="" close="">
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>4</mml:mn>
+                                </mml:msub>
+                            </mml:mfenced>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                        </mml:mrow>
+                    </mml:mfenced>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mfenced open="(" close=")">
+                            <mml:mrow>
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>1</mml:mn>
+                                </mml:msub>
+                                <mml:mo>⁢</mml:mo>
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>2</mml:mn>
+                                </mml:msub>
+                                <mml:mo>⁢</mml:mo>
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>3</mml:mn>
+                                </mml:msub>
+                                <mml:mo>⁢</mml:mo>
+                                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                                <mml:mn>4</mml:mn>
+                                </mml:msub>
+                            </mml:mrow>
+                        </mml:mfenced>
+                        <mml:mo>⁢</mml:mo>
+                        <mml:msup><mml:mi mathvariant="italic">M</mml:mi>
+                        <mml:mn>-1</mml:mn>
+                        </mml:msup>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math></fo:block>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">x</mml:mi>
+                <mml:mi mathvariant="italic">e</mml:mi>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">y</mml:mi>
+                <mml:mi mathvariant="italic">e</mml:mi>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">z</mml:mi>
+                <mml:mi mathvariant="italic">e</mml:mi>
+                </mml:msub>
+            </mml:math>
+            , and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">w</mml:mi>
+                <mml:mi mathvariant="italic">e</mml:mi>
+                </mml:msub>
+            </mml:math>
+            are the eye coordinates of the vertex,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>1</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>2</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>3</mml:mn>
+                </mml:msub>
+            </mml:math>
+            ,
+            and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:msub><mml:mi mathvariant="italic">p</mml:mi>
+                <mml:mn>4</mml:mn>
+                </mml:msub>
+            </mml:math>
+            are the values supplied in <fo:inline font-style="italic" font-family="monospace">params</fo:inline>, and
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">M</mml:mi></mml:math>
+            is the modelview matrix when <fo:inline font-family="monospace">glTexGen</fo:inline> is invoked.
+            If 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">M</mml:mi></mml:math>
+            is poorly conditioned or singular,
+            texture coordinates generated by the resulting function may be inaccurate
+            or undefined.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            Note that the values in <fo:inline font-style="italic" font-family="monospace">params</fo:inline> define a reference plane in eye coordinates.
+            The modelview matrix that is applied to them may not be the same one
+            in effect when the polygon vertices are transformed.
+            This function establishes a field of texture coordinates
+            that can produce dynamic contour lines on moving objects.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            If <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is <fo:inline font-family="monospace">GL_SPHERE_MAP</fo:inline> and <fo:inline font-style="italic" font-family="monospace">coord</fo:inline> is either
+            <fo:inline font-family="monospace">GL_S</fo:inline> or
+            <fo:inline font-family="monospace">GL_T</fo:inline>,
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">s</mml:mi></mml:math>
+            and 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">t</mml:mi></mml:math>
+            texture coordinates are generated as follows.
+            Let <fo:inline font-style="italic">u</fo:inline> be the unit vector pointing from the origin to the polygon vertex
+            (in eye coordinates).
+            Let <fo:inline font-style="italic">n</fo:inline> sup prime be the current normal,
+            after transformation to eye coordinates.
+            Let
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">f</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:msup><mml:mfenced open="(" close=")">
+                        <mml:mrow>
+                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                            <mml:mi mathvariant="italic">x</mml:mi>
+                            </mml:msub>
+                            <mml:mo>⁢</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                            <mml:mi mathvariant="italic">y</mml:mi>
+                            </mml:msub>
+                            <mml:mo>⁢</mml:mo>
+                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                            <mml:mi mathvariant="italic">z</mml:mi>
+                            </mml:msub>
+                        </mml:mrow>
+                    </mml:mfenced>
+                    <mml:mi mathvariant="italic">T</mml:mi>
+                    </mml:msup>
+                </mml:mrow>
+            </mml:math>
+            be the reflection vector such that
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">f</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mi mathvariant="italic">u</mml:mi>
+                        <mml:mo>-</mml:mo>
+                        <mml:mn>2</mml:mn>
+                        <mml:mo>⁢</mml:mo>
+                        <mml:msup><mml:mi mathvariant="italic">n</mml:mi>
+                        <mml:mo>″</mml:mo>
+                        </mml:msup>
+                        <mml:mo>⁢</mml:mo>
+                        <mml:msup><mml:mfenced open="" close="">
+                            <mml:msup><mml:mi mathvariant="italic">n</mml:mi>
+                            <mml:mo>″</mml:mo>
+                            </mml:msup>
+                        </mml:mfenced>
+                        <mml:mi mathvariant="italic">T</mml:mi>
+                        </mml:msup>
+                        <mml:mo>⁢</mml:mo>
+                        <mml:mi mathvariant="italic">u</mml:mi>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            Finally, let 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">m</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mn>2</mml:mn>
+                        <mml:mo>⁢</mml:mo>
+                        <mml:msqrt>
+                            <mml:mfenced open="(" close=")">
+                                <mml:mrow>
+                                    <mml:msup><mml:mfenced open="" close="">
+                                        <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                                        <mml:mi mathvariant="italic">x</mml:mi>
+                                        </mml:msub>
+                                    </mml:mfenced>
+                                    <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                    <mml:mo>+</mml:mo>
+                                    <mml:msup><mml:mfenced open="" close="">
+                                        <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                                        <mml:mi mathvariant="italic">y</mml:mi>
+                                        </mml:msub>
+                                    </mml:mfenced>
+                                    <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                    <mml:mo>+</mml:mo>
+                                    <mml:msup><mml:mfenced open="(" close=")">
+                                        <mml:mrow>
+                                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                                            <mml:mi mathvariant="italic">z</mml:mi>
+                                            </mml:msub>
+                                            <mml:mo>+</mml:mo>
+                                            <mml:mn>1</mml:mn>
+                                        </mml:mrow>
+                                    </mml:mfenced>
+                                    <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                </mml:mrow>
+                            </mml:mfenced>
+                        </mml:msqrt>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>
+            .
+            Then the values assigned to the 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">s</mml:mi></mml:math>
+            and 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">t</mml:mi></mml:math>
+            texture coordinates are
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">s</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mfrac>
+                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                            <mml:mi mathvariant="italic">x</mml:mi>
+                            </mml:msub>
+                            <mml:mi mathvariant="italic">m</mml:mi>
+                        </mml:mfrac>
+                        <mml:mo>+</mml:mo>
+                        <mml:mfrac>
+                            <mml:mn>1</mml:mn>
+                            <mml:mn>2</mml:mn>
+                        </mml:mfrac>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll">
+                
+                <mml:mrow>
+                    <mml:mi mathvariant="italic">t</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mrow>
+                        <mml:mfrac>
+                            <mml:msub><mml:mi mathvariant="italic">f</mml:mi>
+                            <mml:mi mathvariant="italic">y</mml:mi>
+                            </mml:msub>
+                            <mml:mi mathvariant="italic">m</mml:mi>
+                        </mml:mfrac>
+                        <mml:mo>+</mml:mo>
+                        <mml:mfrac>
+                            <mml:mn>1</mml:mn>
+                            <mml:mn>2</mml:mn>
+                        </mml:mfrac>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            To enable or disable a texture-coordinate generation function, call
+            glEnable or glDisable
+            with one of the symbolic texture-coordinate names
+            (<fo:inline font-family="monospace">GL_TEXTURE_GEN_S</fo:inline>,
+            <fo:inline font-family="monospace">GL_TEXTURE_GEN_T</fo:inline>,
+            <fo:inline font-family="monospace">GL_TEXTURE_GEN_R</fo:inline>, or
+            <fo:inline font-family="monospace">GL_TEXTURE_GEN_Q</fo:inline>) as the argument.
+            When enabled,
+            the specified texture coordinate is computed
+            according to the generating function associated with that coordinate.
+            When disabled,
+            subsequent vertices take the specified texture coordinate
+            from the current set of texture coordinates. Initially, all texture
+            generation functions are set to <fo:inline font-family="monospace">GL_EYE_LINEAR</fo:inline> and are disabled.
+            Both 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">s</mml:mi></mml:math>
+            plane equations are (1, 0, 0, 0),
+            both 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">t</mml:mi></mml:math>
+            plane equations are (0, 1, 0, 0),
+            and all 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">r</mml:mi></mml:math>
+            and 
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><mml:mi mathvariant="italic">q</mml:mi></mml:math>
+            plane equations are (0, 0, 0, 0).
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            When the <fo:inline font-family="monospace">ARB_multitexture</fo:inline> extension is supported, <fo:inline font-family="monospace">glTexGen</fo:inline> set the
+            texture generation parameters for the currently active texture unit,
+            selected with glActiveTexture.
+        </fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2884052"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">ERRORS</fo:marker><fo:block font-size="17.28pt">ERRORS</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:inline font-family="monospace">GL_INVALID_ENUM</fo:inline> is generated when <fo:inline font-style="italic" font-family="monospace">coord</fo:inline> or <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is not an
+            accepted defined value,
+            or when <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline> and <fo:inline font-style="italic" font-family="monospace">params</fo:inline> is not an
+            accepted defined value.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:inline font-family="monospace">GL_INVALID_ENUM</fo:inline> is generated when <fo:inline font-style="italic" font-family="monospace">pname</fo:inline> is <fo:inline font-family="monospace">GL_TEXTURE_GEN_MODE</fo:inline>,
+            <fo:inline font-style="italic" font-family="monospace">params</fo:inline> is <fo:inline font-family="monospace">GL_SPHERE_MAP</fo:inline>,
+            and <fo:inline font-style="italic" font-family="monospace">coord</fo:inline> is either <fo:inline font-family="monospace">GL_R</fo:inline> or <fo:inline font-family="monospace">GL_Q</fo:inline>.
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            <fo:inline font-family="monospace">GL_INVALID_OPERATION</fo:inline> is generated if <fo:inline font-family="monospace">glTexGen</fo:inline>
+            is executed between the execution of glBegin
+            and the corresponding execution of glEnd.
+        </fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2884159"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">ASSOCIATED GETS</fo:marker><fo:block font-size="17.28pt">ASSOCIATED GETS</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glGetTexGen
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glIsEnabled with argument <fo:inline font-family="monospace">GL_TEXTURE_GEN_S</fo:inline>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glIsEnabled with argument <fo:inline font-family="monospace">GL_TEXTURE_GEN_T</fo:inline>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glIsEnabled with argument <fo:inline font-family="monospace">GL_TEXTURE_GEN_R</fo:inline>
+        </fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glIsEnabled with argument <fo:inline font-family="monospace">GL_TEXTURE_GEN_Q</fo:inline>
+        </fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2884220"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">SEE ALSO</fo:marker><fo:block font-size="17.28pt">SEE ALSO</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            glActiveTexture,
+            glCopyPixels,
+            glCopyTexImage2D,
+            glCopyTexSubImage1D,
+            glCopyTexSubImage2D,
+            glCopyTexSubImage3D,
+            glTexEnv,
+            glTexImage1D,
+            glTexImage2D,
+            glTexImage3D,
+            glTexParameter,
+            glTexSubImage1D,
+            glTexSubImage2D,
+            glTexSubImage3D
+        </fo:block></fo:block><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" id="id2884299"><fo:block><fo:block><fo:block keep-together.within-column="always" font-family="sans-serif,Symbol,ZapfDingbats"><fo:block xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions" keep-with-next.within-column="always"><fo:block font-family="sans-serif" font-weight="bold" keep-with-next.within-column="always" space-before.minimum="0.8em" space-before.optimum="1.0em" space-before.maximum="1.2em" text-align="left" start-indent="0pt"><fo:marker marker-class-name="section.head.marker">COPYRIGHT</fo:marker><fo:block font-size="17.28pt">COPYRIGHT</fo:block></fo:block></fo:block></fo:block></fo:block></fo:block><fo:block space-before.optimum="1em" space-before.minimum="0.8em" space-before.maximum="1.2em">
+            Copyright <fo:inline font-family="serif">©</fo:inline> 1991-2006
+            Silicon Graphics, Inc. This document is licensed under the SGI
+            Free Software B License. For details, see
+            <fo:basic-link external-destination="url(http://oss.sgi.com/projects/FreeB/)">http://oss.sgi.com/projects/FreeB/</fo:basic-link>.
+        </fo:block></fo:block></fo:block></fo:flow></fo:page-sequence></fo:root>

@@ -1,0 +1,96 @@
+# Copyright (c) 1991-2000 Silicon Graphics, Inc.
+# This document is licensed under the SGI Free Software B license.
+# For details, see
+#
+# http://oss.sgi.com/projects/FreeB
+#
+# $Date$ $Revision$
+# $Header: //depot/main/tools/include/commonrules#21 $
+
+#
+# Notes:
+#       - After including $(ROOT)/usr/include/make/commondefs, a makefile may
+#         say ``include $(COMMONRULES)'' to get this file.
+#       - It is up to the including makefile to define a default rule before
+#         including $(COMMONRULES).
+#       - The parent makefile must define TARGETS in order for clobber to work.
+#       - If the parent makefile must overload the common targets with special
+#         rules (e.g. to perform recursive or subdirectory makes), then set
+#         COMMONPREF to some unique prefix before including $(COMMONRULES),
+#         and make sure that each common target depends on its prefixed name.
+#         For example, a makefile which passes common targets and install on
+#         to makes in subdirectories listed in DIRS might say
+#
+#               COMMONPREF=xxx
+#               include $(COMMONRULES)
+#
+#               $(COMMONTARGS) install: $(COMMONPREF)$$@
+#                       @for d in $(DIRS); do \
+#                               $(ECHO) "\tcd $$d; $(MAKE) $@"; \
+#                               cd $$d; $(MAKE) $@; cd ..; \
+#                       done
+#
+#         Thus, all of the common rules plus install are passed to sub-makes
+#         *and* executed in the current makefile (as xxxclean, xxxclobber,
+#         xxxinstall, etc).  SUBDIRS_MAKERULE in commondefs is a convenience
+#         macro that expands to the above loop.
+#
+
+
+#
+# cleaning targets
+#
+$(COMMONPREF)clobber: $(COMMONPREF)clean $(COMMONPREF)rmtargets
+ifdef MKDEPFILE
+	$(RM) -r $(MKDEPFILE)
+endif
+
+$(COMMONPREF)clean:
+ifdef DIRT
+	$(RM) -r $(DIRT)
+endif
+
+$(COMMONPREF)rmtargets:
+ifdef TARGETS
+	$(RM) -r $(TARGETS)
+endif
+
+#
+# targets to build distributions
+#
+-include $(DISTFILE)
+
+# build SI distribution
+$(COMMONPREF)distsi:
+	@$(INSTALL) $(INSTALLFLAGS) -F $(DIST)/$(DISTDIR_SI) $(DISTFILES_SI)
+	@$(ECHO) ""
+
+# build OSS distribution
+$(COMMONPREF)distoss:
+	@$(INSTALL) $(INSTALLFLAGS_OSS) -F $(DIST)/$(DISTDIR_OSS) $(DISTFILES_OSS)
+	@$(ECHO) ""
+
+#
+# additional target for .cxx files.  (gmake only likes .C and .cc)
+#
+%.o : %.cxx
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+#
+# preprocessor only target
+#
+%.i : %.c
+	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< | $(SED) -e 's/^ $$//' | $(UNIQ) > $@
+
+%.i : %.cc %.C %.cxx
+	$(CXX) -E $(CPPFLAGS) $(CXXFLAGS) $< | $(SED) -e 's/^ $$//' | $(UNIQ) > $@
+
+#
+# include the make dependency file(s), if they exist
+#
+-include $(MKDEPFILE)
+
+#
+# Local make rules
+#
+-include $(LOCALRULES)

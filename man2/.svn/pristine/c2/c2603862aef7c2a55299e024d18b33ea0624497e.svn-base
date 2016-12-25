@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <font-metrics type="TYPE1">  -->
+<!--   <font-name>Symbol</font-name>  -->
+<!--   <embed/>  -->
+<!--   <encoding>SymbolEncoding</encoding>  -->
+<!--   <font-triplet name="any" style="normal" weight="normal"/>  -->
+<!-- </font-metrics>  -->
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook MathML Module V1.1b1//EN"
+              "http://www.oasis-open.org/docbook/xml/mathml/1.1CR1/dbmathml.dtd">
+
+
+<book>
+
+<title><graphic fileref="opengl_logo.gif" scale="25"/>Reference Pages</title>
+
+<!--
+<subtitle>Draft - Version 2.1 11/19/2007 - Draft</subtitle>
+-->
+<titleabbrev>OpenGL&reg; Reference Pages</titleabbrev>
+
+<bookinfo>
+
+  <corpauthor>OpenGL&reg; Architectural Review Board TSG, Khronos Group Inc.</corpauthor>
+  <editor><personname><firstname>Brent</firstname><surname>Insko</surname><othername role='mi'>E</othername></personname></editor>
+  <edition>2.1 11/14/2007 - DRAFT</edition>
+  <copyright><year>2007</year>
+    <holder>Khronos Group, Inc.</holder>
+  </copyright>
+  <abstract>
+  <title>Contents</title>
+    <para>
+      This document contains reference information for the OpenGL&reg; Application 
+Programming Interface. These reference pages (also known as "man pages") include 
+all of the important usage information for each command. This information includes
+a description of all parameters, return values, error conditions, and related
+commands.  In addition, this document also provides usage information for the OpenGL&reg;
+Utility Library (GLU) and the OpenGL&reg; extension to the X Window System (GLX).
+    </para>
+    <para>
+      These pages also exist online in the 
+<ulink url="http://www.opengl.org/sdk/docs/man/"><citetitle>OpenGL&reg; SDK.</citetitle></ulink>
+    </para>
+    <para>
+If you find any inaccuracies or typos in the reference pages, don't hesitate to inform us via 
+the online <ulink url="https://www.khronos.org/bugzilla/enter_bug.cgi?product=OpenGL"><citetitle>bugtracker.</citetitle></ulink>
+
+    </para>
+  </abstract>
+
+</bookinfo>
+
+
+
+<colophon>
+<title>Copyrights</title>
+
+
+    <para>
+The following OpenGL reference pages are Copyright &copy; 2007 The Khronos Group Inc. and licensed under the Khronos Free Use License. For details, see <ulink url="http://www.khronos.org/help/legal/KFUL/"><citetitle>http://www.khronos.org/help/legal/KFUL/</citetitle></ulink>.
+    </para>
+
+<blockquote> 
+    <constant>
+	glBlendEquationSeparate,
+	glStencilFuncSeparate,
+	glStencilMaskSeparate,
+	glStencilOpSeparate
+    </constant>
+</blockquote>
+ 
+    <para>
+The following OpenGL reference pages are Copyright &copy; 2005 Addison-Wesley and may be distributed subject to the terms and conditions set forth in the Open Publication Licesnse, v 1.0, 8, June 1999. For details, see <ulink url="http://openlcontent.org/openpub/"><citetitle>http://openlcontent.org/openpub/</citetitle></ulink>.
+    </para>
+
+<blockquote>
+    <constant>
+	glBeginQuery,
+	glBindBuffer,
+	glBufferData,
+	glBufferSubData,
+	glDeleteBuffers,
+	glDeleteQueries,
+	glGenBuffers,
+	glGenQueries,
+	glGetBufferParameteriv,
+	glGetBufferPointerv,
+	glGetBufferSubData,
+	glGetQueryiv,
+	glGetQueryObject,
+	glIsBuffer,
+	glIsQuery,
+	glMapBuffer
+    </constant>
+</blockquote>
+
+    <para>
+The following OpenGL reference pages are Copyright &copy; 2003-2005 3Dlabs, Inc. Ltd. And may be distributed subject to the terms and conditions set forth in the Open Publication License, v 1.0, 8, June 1999. For details, see <ulink url="http://openlcontent.org/openpub/"><citetitle>http://openlcontent.org/openpub/</citetitle></ulink>.
+    </para>
+
+<blockquote>
+    <constant>
+	glAttachShader,
+	glBindAttribLocation,
+	glCompileShader,
+	glCreateProgram,
+	glCreateShader,
+	glDeleteProgram,
+	glDeleteShader,
+	glDetachShader,
+	glDrawBuffers,
+	glEnableVertexAttribArray,
+	glGetActiveAttrib,
+	glGetActiveUniform,
+	glGetAttachedShaders,
+	glGetAttribLocation,
+	glGetProgram,
+	glGetProgramInfoLog,
+	glGetShader,
+	glGetShaderInfoLog,
+	glGetShaderSource,
+	glGetUniform,
+	glGetUniformLocation,
+	glGetVertexAttrib,
+	glGetVertexAttribPointerv,
+	glIsProgram,
+	glIsShader,
+	glLinkProgram,
+	glShaderSource,
+	glUniform,
+	glUseProgram,
+	glValidateProgram,
+	glVertexAttrib,
+	glVertexAttribPointer
+  </constant>
+</blockquote>
+ 
+
+    <para>
+	All reference pages referring to the OpenGL Utility Library and the OpenGL
+extension to the X Window System, and the following core OpenGL reference pages
+are Copyright &copy; 1991-2006 Silicon Graphics, Inc. and may be distributed
+subject to the terms and conditions set forth in the Free Software B License.
+For details, see <ulink url="http://oss.sgi.com/projects/FreeB/">
+<citetitle>http://oss.sgi.com/projects/FreeB/</citetitle></ulink>.
+    </para>
+<blockquote>
+    <constant>
+	glAccum,
+	glActiveTexture,
+	glAlphaFunc,
+	glAreTexturesResident,
+	glArrayElement,
+	glBegin,
+	glBindTexture, 
+	glBitmap,
+	glBlendColor,
+	glBlendEquation,
+	glBlendFunc,
+	glBlendFuncSeparate,
+	glCallList,
+	glCallLists,
+	glClear,
+	glClearAccum,
+	glClearColor,
+	glClearDepth,
+	glClearIndex,
+	gllearStencil,
+	glCLientActiveTexture,
+	glClipPlane,
+	glColor,
+	glColorMask,
+	glColorMaterial,
+	glColorPointer,
+	glColorSubTable,
+	glColorTable,
+	glColorTableParameter,
+	glCompressedTexImage1D,
+	glCompressedTexImage2D,
+	glCompressedTexImage3D,
+	glCompressedTexSubImage1D,
+	glCompressedTexSubImage2D,
+	glCompressedTexSubImage3D,
+	glConvolutionFilter1D,
+	glConvolutionFilter2D,
+	glConvolutionParameter,
+	glCopyColorSubTable,
+	glCopyColorTable,
+	glCopyConvolutionFilter1D,
+	glCopyConvolutionFilter2D,
+	glCopyPixels,
+	glCopyTexImage1D,
+	glCopyTexImage2D,
+	glCopyTexSubImage1D, 
+	glCopyTexSubImage2D,
+	glCopyTexSubImage3D,   
+	glCullFace,
+	glDeleteLists,
+	glDeleteTextures,
+	glDepthFunc,
+	glDepthMask,
+	glDepthRange,
+	glDrawArrays,
+	glDrawBuffer,
+	glDrawElements,
+	glDrawPixels,
+	glDrawRangeElements,
+	glEdgeFlag,
+	glEdgeFlagPointer,
+	glEnable,
+	glEnableClientState,
+	glEvalCoord,
+	glEvalMesh,
+	glEvalPoint,
+	glFeedbackBuffer,
+	glFinish,
+	glFlush,
+	glFog,
+	glFogCoord,
+	glFogCoordPointer,
+	glFrontFace,
+	glFrustum,
+	glGenLists,
+	glGenTextures,
+	glGet,
+	glGetClipPlane,
+	glGetColorTable,
+	glGetColorTableParameter,
+	glGetCompressedTexImage,
+	glGetConvolutionFilter,
+	glGetConvolutionParameter,
+	glGetError,
+	glGetHistogram,
+	glGetHistogramParameter,
+	glGetLight,
+	glGetMap,
+	glGetMaterial,
+	glGetMinmax,
+	glGetMinmaxParameter,
+	glGetPixelMap,
+	glGetPointerv,
+	glGetPolygonStipple,
+	glGetSeparableFilter,
+	glGetString,
+	glGetTexEnv,
+	glGetTexGen,
+	glGetTexImage,
+	glGetTexLevelParameter,
+	glGetTexParameter,
+	glHint,
+	glHistogram,
+	glIndex,
+	glIndexMask,
+	glIndexPointer,
+	glInitNames,
+	glInterleavedArrays,
+	glIsEnabled,
+	glIsList,
+	glIsTexture,
+	glLight,
+	glLightModel,
+	glLineStipple,
+	glLineWidth,
+	glListBase,
+	glLoadIdentity,
+	glLoadMatrix,
+	glLoadName,
+	glLoadTransposeMatrix,
+	glLogicOp,
+	glMap1,
+	glMap2,
+	glMapGrid,
+	glMaterial,
+	glMatrixMode,
+	glMinmax,
+	glMultiDrawArrays,
+	glMultiDrawElements,
+	glMultiTexCoord,
+	glMultMatrix,
+	glMultTransposeMatrix,
+	glNewList,
+	glNormal,
+	glNormalPointer,
+	glOrtho,
+	glPassThrough,
+	glPixelMap,
+	glPixelStore,
+	glPixelTransfer,
+	glPixelZoom,
+	glPointParameter,
+	glPointSize,
+	glPolygonMode,
+	glPolygonOffset,
+	glPolygonStipple,
+	glPrioritizeTextures,
+	glPushAttrib,
+	glPushClientAttrib,
+	glPushMatrix,
+	glPushName,
+	glRasterPos,
+	glReadBuffer,
+	glReadPixels,
+	glRect,
+	glRenderMode,
+	glResetHistogram,
+	glResetMinmax,
+	glRotate,
+	glSampleCoverage,
+	glScale,
+	glScissor,
+	glSecondaryColor,
+	glSecondaryColorPointer,
+	glSelectBuffer,
+	glSeparableFilter2D,
+	glShadeModel,
+	glStencilFunc,
+	glStencilMask,
+	glStencilOp,
+	glTexCoord,
+	glTexCoordPointer,
+	glTexEnv,
+	glTexGen,
+	glTexImage1D,
+	glTexImage2D,
+	glTexImage3D,
+	glTexParameter,
+	glTexSubImage1D,
+	glTexSubImage2D,
+	glTexSubImage3D,
+	glTranslate,
+	glVertex,
+	glVertexPointer,
+	glViewport,
+	glWindowPos
+    </constant>
+</blockquote>
+
+
+</colophon>
+
+
+
+
+
+<reference>
+<title>OpenGL<superscript>&reg;</superscript> Commands</title>

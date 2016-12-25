@@ -1,0 +1,3 @@
+#!/bin/sh
+DB5RNC=/usr/share/xml/docbook/schema/rng/5.0/docbookxi.rnc
+jing -c $DB5RNC $*

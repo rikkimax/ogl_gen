@@ -1,0 +1,2 @@
+#!/bin/sh
+xmllint --noout --xinclude --dtdvalid http://www.oasis-open.org/docbook/xml/mathml/1.1CR1/dbmathml.dtd $*

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="REFRESH" content="5; url=../html/glViewportArray.xhtml" />
+</head>
+<body>
+
+<p> The OpenGL API reference pages have been updated to HTML5 format
+and relocated. You should only have reached this page from a stale
+search engine link (these will eventually update), or a link or bookmark
+(which you are encouraged to update, if possible).</p>
+
+<p> If you are using a modern browser, you can:</p>
+
+<ul>
+<li> <p> Wait to be redirected to the new reference page.</p> </li>
+<li> <p> Click to go directly to the <a href="../html/glViewportArray.xhtml">new
+     reference page</a>. </p> </li>
+<li> <p> Click to go to the new <a href="../index.php">index
+      page</a>. </p> </li>
+</ul>
+
+<p> If you are are using Internet Explorer 8 or earlier versions of IE
+which cannot properly display HTML5, and cannot upgrade to a modern
+browser, there is a <a href="../docbook4/xhtml/glViewportArray.xml">cached copy of
+the old page</a> available. Note that these old pages will not be
+updated and will eventually be removed. </p>
+
+</body>
+</html>

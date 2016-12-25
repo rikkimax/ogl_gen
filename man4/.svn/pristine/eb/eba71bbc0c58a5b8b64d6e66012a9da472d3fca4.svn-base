@@ -1,0 +1,4 @@
+#!/bin/sh
+set -x
+cp *.php $HOME/public/man5
+cp xhtml/*.* $HOME/public/man5/xhtml/

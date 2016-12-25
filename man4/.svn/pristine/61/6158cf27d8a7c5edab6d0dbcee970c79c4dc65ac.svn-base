@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook MathML Module V1.1b1//EN"
+              "http://www.oasis-open.org/docbook/xml/mathml/1.1CR1/dbmathml.dtd">
+<refentry id="removedTypes">
+    <refentryinfo>
+        <copyright>
+            <year>2013</year>
+            <holder>Khronos Group</holder>
+        </copyright>
+    </refentryinfo>
+    <refmeta>
+        <refentrytitle>removedTypes</refentrytitle>
+        <manvolnum>3G</manvolnum>
+    </refmeta>
+    <refnamediv>
+        <refname>removedTypes</refname>
+        <refpurpose>Describes types removed and replaced in the OpenGL API in OpenGL 4.2</refpurpose>
+    </refnamediv>
+    <refsect1 id="description"><title>Description</title>
+        <para>
+            In the May, 2012 update of the OpenGL 4.2 Specification, all
+            APIs using the types GLclampf and GLclampd were modified to
+            use GLfloat and GLdouble, respectively, instead. Language
+            was added to the Specification requiring that these
+            parameters be clamped, when required, at use time rather
+            than at specification time.
+        </para>
+        <para>
+            This change allows specifying parameters in ranges
+            appropriate for non-fixed-point framebuffers (integer and
+            floating-point formats). The change does not require any
+            changes to user code calling these functions, because the
+            actual underlying types are identical, the behavior is
+            externally unchanged, and the header files continue to
+            define the old types for compatibility with older code.
+        </para>
+    </refsect1>
+    <refsect1 id="seealso"><title>See Also</title>
+        <para>
+            <citerefentry><refentrytitle>glBlendColor</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glClearColor</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glClearDepth</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glDepthRange</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glDepthRangeArray</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glDepthRangeIndexed</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glMinSampleShading</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>glSampleCoverage</refentrytitle></citerefentry>
+        </para>
+    </refsect1>
+    <refsect1 id="Copyright"><title>Copyright</title>
+        <para>
+            Copyright <trademark class="copyright"></trademark> 2013 Khronos Group.
+            This material may be distributed subject to the terms and conditions set forth in
+            the Open Publication License, v 1.0, 8 June 1999.
+            <ulink url="http://opencontent.org/openpub/">http://opencontent.org/openpub/</ulink>.
+        </para>
+    </refsect1>
+</refentry>
