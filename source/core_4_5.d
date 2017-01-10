@@ -177,9 +177,8 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 						j++;
 					}
 
-					foreach(para; paras) {
+					foreach (para; paras)
 						family.docs_parameters[i].documentation.evaluateDocs(para);
-					}
 
 					i++;
 				}
@@ -328,7 +327,10 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 			goto case "$$container$$";
 
 		case "trademark":
-			next = OGLDocumentation(OGLDocumentationType.Trademark);
+			if (current.attributes.getNamedItem("class").nodeValue == "copyright")
+				next = OGLDocumentation(OGLDocumentationType.Copyright);
+			else
+				next = OGLDocumentation(OGLDocumentationType.Trademark);
 			goto case "$$container$$";
 		case "link":
 			next = OGLDocumentation(OGLDocumentationType.Link);

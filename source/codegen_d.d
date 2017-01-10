@@ -2,9 +2,7 @@
 import defs;
 
 void gencode_d(OGLFunctionFamily[] functionFamilies, string filename, string modulename, bool isStatic, string containerStruct) {
-	import std.array : appender;
-
-	auto ret = appender!string();
+	char[] ret;
 
 	// For OpenGL 4.5 output from the "printers" is around 1mb,
 	//  so 6mb is beyond anything we'll actually need.
@@ -31,7 +29,7 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, string filename, string mod
 		prefix = "    ";
 	}
 
-	prefixComment = prefix ~ " * ";
+	prefixComment = prefix ~ " + ";
 
 	if (modulename !is null) {
 		ret ~= "
@@ -558,12 +556,12 @@ private {
 				ret ~= "\n";
 
 				ret ~= prefix;
-				ret ~= "/**\n";
+				ret ~= "/++\n";
 
 				ret.genDDOC(family, prefixComment);
 
 				ret ~= prefix;
-				ret ~= " */\n";
+				ret ~= " +/\n";
 			} else {
 				ret ~= prefix;
 				ret ~= "/// Ditto\n";
@@ -623,10 +621,10 @@ private {
 	}
 	
 	import std.file : write;
-	write(filename, ret.data);
+	write(filename, ret);
 }
 
-void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
+void genDDOC(T)(ref T ret, OGLFunctionFamily family, string prefix) {
 	string prefix2 = prefix ~ "    ";
 	string prefix3 = prefix ~ "                    ";
 
@@ -640,38 +638,71 @@ void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
 	
 	ret ~= prefix;
 	ret.genDDOC(family.familyOfFunction, family.docs_description, prefix, prefix);
-	ret ~= "\n";
+	if (ret[$ - 1] != '\n')
+		ret ~= "\n";
 	ret ~= prefix;
 	ret ~= "\n";
 	
 	if (family.docs_notes.value_children.length > 0) {
 		ret ~= prefix;
 		ret.genDDOC(family.familyOfFunction, family.docs_notes, prefix, prefix);
-		ret ~= "\n";
+		if (ret[$ - 1] != '\n')
+			ret ~= "\n";
 		ret ~= prefix;
 		ret ~= "\n";
 	}
 	
-	ret ~= prefix;
+	if (ret.length >= prefix.length * 2 + 2
+			&& ret[$ - prefix.length - 1 .. $ - 1] == prefix
+			&& ret[$ - prefix.length * 2 - 2 .. $ - prefix.length - 2] == prefix)
+		// 2 empty lines here already, no need for another one
+		ret.length--;
+	else
+		ret ~= prefix;
 	ret ~= "Params:\n";
+
+	size_t longestParam = 0;
+	foreach(ref param; family.docs_parameters) {
+		size_t length = 1;
+		foreach(i, name; param.appliesToNames) {
+			if (i > 0) {
+				length += ", ".length;
+			}
+
+			if (name == "ref")
+				length += "ref_".length;
+			else
+				length += name.length;
+		}
+		if (length > longestParam)
+			longestParam = length;
+	}
 
 	foreach(ref param; family.docs_parameters) {
 		ret ~= prefix2;
 
+		size_t length = 0;
 		foreach(i, name; param.appliesToNames) {
 			if (i > 0) {
 				ret ~= ", ";
+				length += ", ".length;
 			}
 
-			if (name == "ref")
+			if (name == "ref") {
 				ret ~= "ref_";
-			else
+				length += "ref_".length;
+			} else {
 				ret ~= name;
+				length += name.length;
+			}
 		}
 
-		ret ~= "    =    ";
+		for (size_t i = 0; i < longestParam - length; i++)
+			ret ~= ' ';
+		ret ~= "= ";
 		ret.genDDOC(family.familyOfFunction, param.documentation, "", prefix3);
-		ret ~= "\n";
+		if (ret[$ - 1] != '\n')
+			ret ~= "\n";
 	}
 
 	ret ~= prefix;
@@ -681,7 +712,8 @@ void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
 	ret ~= "Copyright:\n";
 	ret ~= prefix2;
 	ret.genDDOC(family.familyOfFunction, family.docs_copyright, prefix2, prefix2);
-	ret ~= "\n";
+	if (ret[$ - 1] != '\n')
+		ret ~= "\n";
 	ret ~= prefix;
 	ret ~= "\n";
 
@@ -689,19 +721,22 @@ void genDDOC(T)(T ret, OGLFunctionFamily family, string prefix) {
 	ret ~= "See_Also:\n";
 	ret ~= prefix2;
 	ret.genDDOC(family.familyOfFunction, family.docs_seealso, prefix2, prefix2);
-	ret ~= "\n";
+	if (ret[$ - 1] != '\n')
+		ret ~= "\n";
 }
 
-void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext) {
+void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext) {
 	bool firstText=true;
 	genDDOC(ret, functionFamily, ctx, linetabs, linetabsNext, firstText);
 }
 
-void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext, ref bool firstText) {
-	import std.string : splitLines, strip;
+void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, string linetabs, string linetabsNext, ref bool firstText, bool inCode = false) {
+	import std.string : splitLines, strip, stripRight, KeepTerminator;
+	import std.algorithm : canFind;
 	with(ctx) {
 		string suffix;
 		string macroPrefix, htmlTag;
+		bool startCodeBlock = false;
 		
 		switch(type) {
 			case OGLDocumentationType.LookupParameter:
@@ -733,6 +768,9 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 			case OGLDocumentationType.TableEntry:
 				suffix = "entry";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.Copyright:
+				ret ~= "&copy;";
+				return;
 			case OGLDocumentationType.Trademark:
 				ret ~= "&trade;";
 				return;
@@ -743,6 +781,12 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.StyleCode:
 				macroPrefix = "D_CODE";
+				foreach(child; value_children) {
+					// only start blocks for multiline code
+					startCodeBlock = startCodeBlock || child.value_string.canFind('\n');
+				}
+				if (!startCodeBlock)
+					macroPrefix = "D_INLINECODE";
 				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.Footnote:
 				suffix = "\\/footnote";
@@ -796,11 +840,17 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Paragraph:
-				macroPrefix = "P";
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Container:
-				if (macroPrefix !is null) {
+				if (startCodeBlock && ret.length >= 1 && ret[$ - 1] != '\n')
+					ret ~= "\n" ~ linetabs ~ "\n" ~ linetabs;
+
+				size_t preMacroPos = -1;
+				if (startCodeBlock) {
+					ret ~= "---\n" ~ linetabs;
+				} else if (macroPrefix !is null) {
+					preMacroPos = ret.length;
 					ret ~= "$(";
 					ret ~= macroPrefix;
 					ret ~= " ";
@@ -810,11 +860,29 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 					ret ~= ">";
 				}
 				
+				size_t codePos = ret.length;
 				foreach(i, child; value_children)
-					ret.genDDOC(functionFamily, child, linetabs, linetabsNext, firstText);
+					ret.genDDOC(functionFamily, child, linetabs, linetabsNext, firstText, startCodeBlock);
+				if (codePos < ret.length && ret[codePos] == ' ' && preMacroPos != -1) {
+					// space inside macro, remove space and place it before macro
+					for (size_t i = codePos - 1; i >= preMacroPos; i--)
+						ret[i] = ret[i - 1];
+					ret[preMacroPos] = ' ';
+				}
 				
-				if (macroPrefix !is null) {
-					ret ~= ")";
+				if (startCodeBlock) {
+					if (ret.length >= linetabs.length && ret[$ - linetabs.length .. $] == linetabs)
+						ret ~= "---\n" ~ linetabs;
+					else {
+						if (ret.length && ret[$ - 1] != '\n')
+							ret ~= '\n' ~ linetabs;
+						ret ~= "---\n" ~ linetabs;
+					}
+				} else if (macroPrefix !is null) {
+					if (macroPrefix == "D_INLINECODE" && ret.length && ret[$ - 1] == '\n')
+						ret[$ - 1] = ')';
+					else
+						ret ~= ")";
 				} else if (htmlTag !is null) {
 					ret ~= "</";
 					ret ~= htmlTag;
@@ -823,41 +891,43 @@ void genDDOC(T)(T ret, string functionFamily, ref OGLDocumentation ctx, string l
 				return;
 				
 			case OGLDocumentationType.Text:
-				size_t i;
-				string lines = value_string;
-				
-				if (functionFamily == "glBindTextures") {
-					lines = lines.replace("/* target of textures[i] */;", "/+ target of textures[i] +/;");
-				} else if (functionFamily == "glCreateShaderProgram") {
-					lines = lines.replace("/* append-shader-info-log-to-program-info-log */", "/+ append-shader-info-log-to-program-info-log +/");
-				}
-				
-				string linesOld = lines;
-				lines = lines
-					.replace("NULL", "null").replace("== null", "is null")
-					.replace("{", "{\n").replace("}", "}\n")
-					.replace("; if", ";\n if").replace("; gl", ";\n gl").replace("; }", ";\n }")
-					.replace("}\n else {", "\n} else {");
-				
-				foreach(line; lines.splitLines) {
-					string lineStripped = line.strip;
-					if (lineStripped.length > 0) {
-						if (!firstText && !(line[0] == '.' || line[0] == ',' || line[0] == ';')) {
-							ret ~= " ";
-						}
-						
-						ret ~= lineStripped;
-						i++;
+				if (inCode) {
+					foreach(line; value_string.splitLines(KeepTerminator.yes)) {
+						if (line.length >= 4 && line[0 .. 4] == "    ")
+							ret ~= line[4 .. $];
+						else
+							ret ~= line;
 						firstText = false;
-						
-						if (linesOld != lines) {
-							ret ~= "\n";
+						if (ret.length > 0 && ret[$ - 1] == '\n')
+							ret ~= linetabs;
+					}
+				} else {
+					size_t i;
+					string lines = value_string;
+					
+					string linesOld = lines;
+					lines = lines
+						.replace("NULL", "null")
+						.replace("== null", "is null");
+					
+					foreach(line; lines.splitLines) {
+						string lineStripped = line.strip;
+						if (lineStripped.length > 0) {
+							if (!firstText && !(line[0] == '.' || line[0] == ',' || line[0] == ';')) {
+								ret ~= " ";
+							}
+							
+							ret ~= lineStripped;
+							i++;
+							firstText = false;
+							
+							if (linesOld != lines) {
+								ret ~= "\n" ~ linetabs;
+							}
 						}
 					}
 				}
-
 				return;
-				
 			case OGLDocumentationType.MathML_mfenced:
 				foreach(i, child; value_children)
 					ret.genDDOC(functionFamily, child, linetabsNext, linetabsNext, firstText);

@@ -40,6 +40,9 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 			case OGLDocumentationType.Trademark:
 				suffix = "™";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.Copyright:
+				suffix = "©";
+				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.StyleContainer:
 				suffix = "style>" ~ value_string;
 				goto case OGLDocumentationType.Container;
@@ -181,6 +184,7 @@ bool haveAnErrorNode(ref OGLDocumentation ctx) {
 		case OGLDocumentationType.MathML_mtd:
 		case OGLDocumentationType.MathML_mspace:
 		case OGLDocumentationType.Trademark:
+		case OGLDocumentationType.Copyright:
 		case OGLDocumentationType.Link:
 			foreach(ref child; ctx.value_children) {
 				if (child.haveAnErrorNode)
