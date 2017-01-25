@@ -44,6 +44,9 @@ enum OGLDocumentationType {
 	TableBody,
 	TableRow,
 	TableEntry,
+
+    IndexList,
+	IndexItem,
 	
 	StyleContainer,
 	StyleCode,

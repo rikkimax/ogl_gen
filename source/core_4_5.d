@@ -327,6 +327,13 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 			next = OGLDocumentation(OGLDocumentationType.Container);
 			goto case "$$container$$";
 
+		case "itemizedlist":
+			next = OGLDocumentation(OGLDocumentationType.IndexList);
+			goto case "$$container$$";
+		case "listitem":
+			next = OGLDocumentation(OGLDocumentationType.IndexItem);
+			goto case "$$container$$";
+
 		case "trademark":
 			next = OGLDocumentation(OGLDocumentationType.Trademark);
 			goto case "$$container$$";
