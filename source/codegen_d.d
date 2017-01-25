@@ -831,6 +831,9 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 			case OGLDocumentationType.MathML_mspace:
 				suffix = "MathML:mspace[ " ~ value_string ~ " ]";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_mtext:
+				suffix = "MathML:mtext[ " ~ value_string ~ " ]";
+				goto case OGLDocumentationType.Container;
 
 			case OGLDocumentationType.IndexList:
 				macroPrefix = "OL";

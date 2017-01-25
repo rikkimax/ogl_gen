@@ -73,7 +73,7 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	import std.file : readText;
 	import std.experimental.xml;
-	
+
 	string raw_input = readText(family.fromFilename);
 	OGLFunction[] ret;
 	
@@ -321,6 +321,7 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 			next = OGLDocumentation(OGLDocumentationType.StyleSuperScript);
 			goto case "$$container$$";
 		
+		case "term":
 		case "table":
 		case "informaltable":
 			next = OGLDocumentation(OGLDocumentationType.Container);
@@ -331,6 +332,13 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 			goto case "$$container$$";
 		case "listitem":
 			next = OGLDocumentation(OGLDocumentationType.IndexItem);
+			goto case "$$container$$";
+
+		case "variablelist":
+			next = OGLDocumentation(OGLDocumentationType.List);
+			goto case "$$container$$";
+		case "varlistentry":
+			next = OGLDocumentation(OGLDocumentationType.ListItem);
 			goto case "$$container$$";
 
 		case "trademark":
@@ -417,6 +425,7 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 
 			parentContainer.value_children ~= next;
 			break;
+		case "informalequation":
 		case "mml:math":
 			parentContainer.evaluateDocs_MathML(current);
 			break;
@@ -476,20 +485,35 @@ void evaluateDocs_MathML(ref OGLDocumentation parentContainer, Node!string curre
 			goto case "$$container$$";
 		case "mtable":
 			next = OGLDocumentation(OGLDocumentationType.MathML_mtable);
-			next.value_string = current.attributes.getNamedItem("columnalign").nodeValue;
+			if (current.attributes !is null && current.attributes.length > 0 && current.attributes.getNamedItem("columnalign") !is null)
+				next.value_string = current.attributes.getNamedItem("columnalign").nodeValue;
 			goto case "$$container$$";
 		case "mtr":
 			next = OGLDocumentation(OGLDocumentationType.MathML_mtr);
 			goto case "$$container$$";
 		case "mtd":
 			next = OGLDocumentation(OGLDocumentationType.MathML_mtd);
-			next.value_string = current.attributes.getNamedItem("columnalign").nodeValue;
+			if (current.attributes !is null && current.attributes.length > 0 && current.attributes.getNamedItem("columnalign") !is null)
+				next.value_string = current.attributes.getNamedItem("columnalign").nodeValue;
 			goto case "$$container$$";
+		case "mtext":
+			next = OGLDocumentation(OGLDocumentationType.MathML_mtext);
+			if (current.attributes !is null && current.attributes.length > 0 && current.attributes.getNamedItem("mathvariant") !is null)
+				next.value_string = current.attributes.getNamedItem("mathvariant").nodeValue;
+			goto case "$$container$$";
+
 
 		case "math":
 			next = OGLDocumentation(OGLDocumentationType.MathMLContainer);
 			goto case "$$container$$";
-			
+
+		case "informalequation":
+			auto children = current.childNodes;
+			foreach(childI; 0 .. children.length) {
+				parentContainer.evaluateDocs_MathML(children.item(childI));
+			}
+			break;
+
 		case "$$container$$":
 			auto children = current.childNodes;
 			foreach(childI; 0 .. children.length) {

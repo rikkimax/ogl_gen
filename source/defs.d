@@ -47,6 +47,8 @@ enum OGLDocumentationType {
 
     IndexList,
 	IndexItem,
+	List,
+	ListItem,
 	
 	StyleContainer,
 	StyleCode,
@@ -70,7 +72,8 @@ enum OGLDocumentationType {
 	MathML_mtable,
 	MathML_mtr,
 	MathML_mtd,
-	MathML_mspace
+	MathML_mspace,
+	MathML_mtext
 }
 
 struct OGLDocumentation {

@@ -6,9 +6,9 @@ void main() {
 
 	// load up documentation first for the core profiles
 
-	//functionFamilies.core_4_5_families;
-	functionFamilies.core_3_families;
-	functionFamilies.core_2_families;
+	functionFamilies.core_4_5_families;
+	//functionFamilies.core_3_families;
+	//functionFamilies.core_2_families;
 
 	// now that we have documentation for the core profiles
 	//  lets try and load up all functions
