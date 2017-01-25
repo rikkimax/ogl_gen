@@ -93,6 +93,13 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 				suffix = "MathML:mspace[ " ~ value_string ~ " ]";
 				goto case OGLDocumentationType.Container;
 
+			case OGLDocumentationType.IndexList:
+				suffix = "X. []";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.IndexItem:
+				suffix = "X. Y";
+				goto case OGLDocumentationType.Container;
+
 			case OGLDocumentationType.Link:
 				suffix = "link <-> " ~ value_string;
 				goto case OGLDocumentationType.Container;
