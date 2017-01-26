@@ -72,6 +72,7 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 
 OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	import std.file : readText;
+	import std.conv : to;
 	import std.experimental.xml;
 
 	string raw_input = readText(family.fromFilename);
@@ -223,6 +224,16 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 						continue;
 					family.docs_copyright.evaluateDocs(child);
 				}
+				break;
+
+			case "versions":
+				// refsect1.informaltable.tgroup.tbody.trow.xi:include
+				auto xiinclude = node.childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1];
+				string value = xiinclude.attributes.getNamedItem("xpointer").nodeValue;
+
+				// xpointer(/*/*[@role='20']/*)
+				family.introducedIn = cast(OGLIntroducedIn)(value["xpointer(/*/*[@role='".length .. $][0 .. 2].to!ushort);
+
 				break;
 
 			default:

@@ -2,6 +2,8 @@
 import defs;
 
 void gencode_d(OGLFunctionFamily[] functionFamilies, string filename, string modulename, bool isStatic, string containerStruct) {
+	import std.conv : text;
+
 	char[] ret;
 
 	// For OpenGL 4.5 output from the "printers" is around 1mb,
@@ -107,6 +109,27 @@ alias GLuintptr = size_t;
 alias GLvoid = void;
 ///
 alias GLDEBUGPROC = void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
+struct OpenGL_Version {
+    OGLIntroducedIn from;
+}
+
+enum OGLIntroducedIn : ushort {
+	Unknown,
+	V2P0 = 20,
+	V2P1 = 21,
+	V2P2 = 22,
+	V3P0 = 30,
+	V3P1 = 31,
+	V3P2 = 32,
+	V3P3 = 33,
+	V4P0 = 40,
+	V4P1 = 41,
+	V4P2 = 42,
+	V4P3 = 43,
+	V4P4 = 44,
+	V4P5 = 45,
+}
 
 `[1 .. $];
 
@@ -565,6 +588,16 @@ private {
 			} else {
 				ret ~= prefix;
 				ret ~= "/// Ditto\n";
+			}
+
+			if (family.introducedIn != OGLIntroducedIn.Unknown) {
+				ret ~= prefix;
+				ret ~= "@OpenGL_Version(OGLIntroducedIn.";
+				ret ~= family.introducedIn.text;
+				ret ~= ")\n";
+			} else {
+				ret ~= prefix;
+				ret ~= "@OpenGL_Version(OGLIntroducedIn.Unknown)\n";
 			}
 
 			ret ~= prefix;

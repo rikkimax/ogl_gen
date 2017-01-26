@@ -7,6 +7,7 @@ struct OGLFunctionFamily {
 	string copyright;
 	
 	OGLFunction[] functions;
+	OGLIntroducedIn introducedIn;
 
 	OGLParameter[] docs_parameters;
 	OGLDocumentation docs_description = OGLDocumentation(OGLDocumentationType.Container);
@@ -26,6 +27,23 @@ struct OGLFunction {
 struct OGLParameter {
 	string[] appliesToNames;
 	OGLDocumentation documentation = OGLDocumentation(OGLDocumentationType.Container);
+}
+
+enum OGLIntroducedIn : ushort {
+	Unknown,
+	V2P0 = 20,
+	V2P1 = 21,
+	V2P2 = 22,
+	V3P0 = 30,
+	V3P1 = 31,
+	V3P2 = 32,
+	V3P3 = 33,
+	V4P0 = 40,
+	V4P1 = 41,
+	V4P2 = 42,
+	V4P3 = 43,
+	V4P4 = 44,
+	V4P5 = 45,
 }
 
 enum OGLDocumentationType {
