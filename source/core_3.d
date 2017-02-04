@@ -10,7 +10,7 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 	OGLFunctionFamily[] ret;
 
 	foreach(string entry; dirEntries(FilesLocation, FileGlob, SpanMode.shallow)) {
-		if (entry == FilesLocation ~ "glVertexAttrib.xml")
+		//if (entry == FilesLocation ~ "glVertexAttrib.xml")
 			ret ~= OGLFunctionFamily(entry, entry[FilesLocation.length .. $-4]);
 	}
 
@@ -24,11 +24,10 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 	return ret;
 }
 
-
 OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	import std.file : readText;
 	import std.experimental.xml;
-	import core_4_5 : fixTypePointer;
+	import core_4_5 : fixTypePointer, evaluateDocs;
 
 	string raw_input = readText(family.fromFilename);
 	OGLFunction[] ret;
@@ -49,10 +48,66 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	
 	//
 
-	auto copyrightTags = dom.getElementsByTagName("copyright");
-	if (copyrightTags !is null && copyrightTags.length > 0) {
-		auto copyright = copyrightTags[0];
-		family.copyright = copyright.lastChild.firstChild.nodeValue ~ " " ~ copyright.firstChild.firstChild.nodeValue;
+	auto refsect1 = dom.getElementsByTagName("refsect1");
+	foreach(node; refsect1) {
+		if (node.attributes.getNamedItem("id") is null)
+			continue;
+
+		size_t i;
+		switch(node.attributes.getNamedItem("id").nodeValue) {
+			case "description":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_description.evaluateDocs(child);
+				}
+				break;
+		
+			case "notes":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_notes.evaluateDocs(child);
+				}
+				break;
+		
+			case "seealso":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_seealso.evaluateDocs(child);
+				}
+				break;
+		
+			case "Copyright":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_copyright.evaluateDocs(child);
+				}
+				break;
+				
+			case "errors":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_errors.evaluateDocs(child);
+				}
+				break;
+				
+			default:
+				break;
+		}
 	}
 
 	//

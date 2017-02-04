@@ -867,6 +867,9 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 			case OGLDocumentationType.MathML_mtext:
 				suffix = "MathML:mtext[ " ~ value_string ~ " ]";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_apply:
+				suffix = "MathML:apply[ " ~ value_string ~ " ]";
+				goto case OGLDocumentationType.Container;
 
 			case OGLDocumentationType.IndexList:
 				macroPrefix = "OL";
@@ -880,6 +883,9 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.StyleSuperScript:
 				htmlTag = "sup";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.StyleSubScript:
+				htmlTag = "sub";
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Paragraph:
@@ -974,6 +980,12 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 			case OGLDocumentationType.MathML_mfenced:
 				foreach(i, child; value_children)
 					ret.genDDOC(functionFamily, child, linetabsNext, linetabsNext, firstText);
+				return;
+			case OGLDocumentationType.MathML_floor:
+				ret ~= "<mml:floor/>";
+				return;
+			case OGLDocumentationType.MathML_infinity:
+				ret ~= "&#8734;";
 				return;
 				
 			case OGLDocumentationType.Unknown:

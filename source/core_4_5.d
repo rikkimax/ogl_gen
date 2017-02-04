@@ -236,6 +236,16 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 
 				break;
 
+			case "errors":
+				i = 0;
+				foreach(child; node.childNodes) {
+					i++;
+					if (i == 1)
+						continue;
+					family.docs_errors.evaluateDocs(child);
+				}
+				break;
+
 			default:
 				break;
 		}
@@ -331,6 +341,9 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 		case "superscript":
 			next = OGLDocumentation(OGLDocumentationType.StyleSuperScript);
 			goto case "$$container$$";
+		case "subscript":
+			next = OGLDocumentation(OGLDocumentationType.StyleSubScript);
+			goto case "$$container$$";
 		
 		case "term":
 		case "table":
@@ -361,6 +374,10 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 		case "link":
 			next = OGLDocumentation(OGLDocumentationType.Link);
 			next.value_string = current.attributes.getNamedItem("xlink:href").nodeValue;
+			goto case "$$container$$";
+		case "ulink":
+			next = OGLDocumentation(OGLDocumentationType.Link);
+			next.value_string = current.attributes.getNamedItem("url").nodeValue;
 			goto case "$$container$$";
 
 		case "citerefentry":
@@ -436,6 +453,7 @@ void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {
 
 			parentContainer.value_children ~= next;
 			break;
+		case "mml:apply":
 		case "informalequation":
 		case "mml:math":
 			parentContainer.evaluateDocs_MathML(current);
@@ -512,7 +530,12 @@ void evaluateDocs_MathML(ref OGLDocumentation parentContainer, Node!string curre
 			if (current.attributes !is null && current.attributes.length > 0 && current.attributes.getNamedItem("mathvariant") !is null)
 				next.value_string = current.attributes.getNamedItem("mathvariant").nodeValue;
 			goto case "$$container$$";
-
+		case "apply":
+			next = OGLDocumentation(OGLDocumentationType.MathML_apply);
+			goto case "$$container$$"; 
+		case "csymbol":
+			next = OGLDocumentation(OGLDocumentationType.MathML_csymbol);
+			goto case "$$container$$"; 
 
 		case "math":
 			next = OGLDocumentation(OGLDocumentationType.MathMLContainer);
@@ -537,6 +560,15 @@ void evaluateDocs_MathML(ref OGLDocumentation parentContainer, Node!string curre
 		case "mspace":
 			next = OGLDocumentation(OGLDocumentationType.MathML_mspace);
 			next.value_string = current.attributes.getNamedItem("width").nodeValue;
+			parentContainer.value_children ~= next;
+			break;
+			
+		case "floor":
+			next = OGLDocumentation(OGLDocumentationType.MathML_floor);
+			parentContainer.value_children ~= next;
+			break;
+		case "infinity":
+			next = OGLDocumentation(OGLDocumentationType.MathML_infinity);
 			parentContainer.value_children ~= next;
 			break;
 

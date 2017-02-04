@@ -95,6 +95,15 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 			case OGLDocumentationType.MathML_mtext:
 				suffix = "MathML:mtext[ " ~ value_string ~ " ]";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_apply:
+				suffix = "MathML:apply";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_csymbol:
+				suffix = "MathML:csymbol";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_infinity:
+				suffix = "MathML:infinity ∞";
+				goto case OGLDocumentationType.Container;
 
 			case OGLDocumentationType.IndexList:
 				suffix = "X. []";
@@ -115,6 +124,9 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 				goto case OGLDocumentationType.Container;
 			case OGLDocumentationType.StyleSuperScript:
 				suffix = "^^superscript";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.StyleSubScript:
+				suffix = "	⌄	⌄subscript";
 				goto case OGLDocumentationType.Container;
 				
 			case OGLDocumentationType.Paragraph:
@@ -143,6 +155,9 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 				foreach(i, child; value_children)
 					ret ~= child.toString(sublinetabs);
 				return ret;
+				
+			case OGLDocumentationType.MathML_floor:
+				return "|__floor__\n";
 				
 			case OGLDocumentationType.Unknown:
 			default:
@@ -183,6 +198,8 @@ bool haveAnErrorNode(ref OGLDocumentation ctx) {
 		case OGLDocumentationType.TableEntry:
 		case OGLDocumentationType.StyleContainer:
 		case OGLDocumentationType.StyleCode:
+		case OGLDocumentationType.StyleSuperScript:
+		case OGLDocumentationType.StyleSubScript:
 		case OGLDocumentationType.Paragraph:
 		case OGLDocumentationType.Footnote:
 		case OGLDocumentationType.Container:
@@ -201,6 +218,10 @@ bool haveAnErrorNode(ref OGLDocumentation ctx) {
 		case OGLDocumentationType.MathML_mtd:
 		case OGLDocumentationType.MathML_mspace:
 		case OGLDocumentationType.MathML_mtext:
+		case OGLDocumentationType.MathML_apply:
+		case OGLDocumentationType.MathML_floor:
+		case OGLDocumentationType.MathML_csymbol:
+		case OGLDocumentationType.MathML_infinity:
 		case OGLDocumentationType.Trademark:
 		case OGLDocumentationType.IndexList:
 		case OGLDocumentationType.IndexItem:
@@ -283,6 +304,10 @@ void print_everything(OGLFunctionFamily[] functionFamilies, string forName=null)
 
 		writeln("\tNotes:");
 		write(family.docs_notes.toString("\t"));
+		writeln;
+
+		writeln("\tErrors:");
+		write(family.docs_errors.toString("\t"));
 	}
 	
 	writeln;
@@ -335,5 +360,9 @@ void print_only_with_errors(OGLFunctionFamily[] functionFamilies) {
 
 		writeln("\tNotes:");
 		write(family.docs_notes.toString("\t"));
+		writeln;
+		
+		writeln("\tErrors:");
+		write(family.docs_errors.toString("\t"));
 	}
 }

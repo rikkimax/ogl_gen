@@ -14,6 +14,7 @@ struct OGLFunctionFamily {
 	OGLDocumentation docs_notes = OGLDocumentation(OGLDocumentationType.Container);
 	OGLDocumentation docs_seealso = OGLDocumentation(OGLDocumentationType.Container);
 	OGLDocumentation docs_copyright = OGLDocumentation(OGLDocumentationType.Container);
+	OGLDocumentation docs_errors = OGLDocumentation(OGLDocumentationType.Container);
 }
 
 struct OGLFunction {
@@ -71,6 +72,7 @@ enum OGLDocumentationType {
 	StyleContainer,
 	StyleCode,
 	StyleSuperScript,
+	StyleSubScript,
 		
 	Footnote,
 	InlineEquation,
@@ -91,7 +93,11 @@ enum OGLDocumentationType {
 	MathML_mtr,
 	MathML_mtd,
 	MathML_mspace,
-	MathML_mtext
+	MathML_mtext,
+	MathML_apply,
+	MathML_floor,
+	MathML_csymbol,
+	MathML_infinity
 }
 
 struct OGLDocumentation {

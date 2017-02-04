@@ -7,7 +7,7 @@ void main() {
 	// load up documentation first for the core profiles
 
 	functionFamilies.core_4_5_families;
-	//functionFamilies.core_3_families;
+	functionFamilies.core_3_families;
 	//functionFamilies.core_2_families;
 
 	// now that we have documentation for the core profiles
@@ -17,7 +17,7 @@ void main() {
 	// print
 	import printers;
 	//functionFamilies.print_everything;
-	//functionFamilies.print_only_with_errors;
+	functionFamilies.print_only_with_errors;
 	functionFamilies.print_misc_info;
 
 	import codegen_d;
