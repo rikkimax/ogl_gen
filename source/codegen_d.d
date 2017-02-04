@@ -1008,12 +1008,12 @@ pure string replace(string text, string oldText, string newText, bool caseSensit
 			ret ~= tempData;
 			tempData = "";
 		}
-		if (((oldText[0 .. tempData.length] != tempData && caseSensitive) || (oldText[0 .. tempData.length].toLower() != tempData.toLower() && !caseSensitive)) && !stop) {
+		if (((caseSensitive && oldText[0 .. tempData.length] != tempData) || (!caseSensitive && oldText[0 .. tempData.length].toLower() != tempData.toLower())) && !stop) {
 			ret ~= tempData;
 			tempData = "";
 		}
 		tempData ~= c;
-		if (((tempData == oldText && caseSensitive) || (tempData.toLower() == oldText.toLower() && !caseSensitive)) && !stop) {
+		if (((caseSensitive && tempData == oldText) || (!caseSensitive && tempData.toLower() == oldText.toLower())) && !stop) {
 			ret ~= newText;
 			tempData = "";
 			stop = first;
