@@ -97,7 +97,10 @@ enum OGLDocumentationType {
 	MathML_apply,
 	MathML_floor,
 	MathML_csymbol,
-	MathML_infinity
+	MathML_infinity,
+	MathML_mover,
+	MathML_munderover,
+	MathML_msqrt
 }
 
 struct OGLDocumentation {

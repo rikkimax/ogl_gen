@@ -870,6 +870,15 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 			case OGLDocumentationType.MathML_apply:
 				suffix = "MathML:apply[ " ~ value_string ~ " ]";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_mover:
+				suffix = "MathML:mover";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_munderover:
+				suffix = "MathML:munderover";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_msqrt:
+				suffix = "MathML:msqrt";
+				goto case OGLDocumentationType.Container;
 
 			case OGLDocumentationType.IndexList:
 				macroPrefix = "OL";

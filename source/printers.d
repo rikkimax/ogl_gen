@@ -104,6 +104,15 @@ string toString(ref OGLDocumentation ctx, string linetabs="") {
 			case OGLDocumentationType.MathML_infinity:
 				suffix = "MathML:infinity ∞";
 				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_mover:
+				suffix = "MathML:mover";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_munderover:
+				suffix = "MathML:munderover";
+				goto case OGLDocumentationType.Container;
+			case OGLDocumentationType.MathML_msqrt:
+				suffix = "MathML:msqrt";
+				goto case OGLDocumentationType.Container;
 
 			case OGLDocumentationType.IndexList:
 				suffix = "X. []";
@@ -222,6 +231,9 @@ bool haveAnErrorNode(ref OGLDocumentation ctx) {
 		case OGLDocumentationType.MathML_floor:
 		case OGLDocumentationType.MathML_csymbol:
 		case OGLDocumentationType.MathML_infinity:
+		case OGLDocumentationType.MathML_mover:
+		case OGLDocumentationType.MathML_munderover:
+		case OGLDocumentationType.MathML_msqrt:
 		case OGLDocumentationType.Trademark:
 		case OGLDocumentationType.IndexList:
 		case OGLDocumentationType.IndexItem:

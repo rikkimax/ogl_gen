@@ -533,6 +533,16 @@ void evaluateDocs_MathML(ref OGLDocumentation parentContainer, Node!string curre
 		case "apply":
 			next = OGLDocumentation(OGLDocumentationType.MathML_apply);
 			goto case "$$container$$"; 
+		case "mover":
+			next = OGLDocumentation(OGLDocumentationType.MathML_mover);
+			goto case "$$container$$"; 
+		case "munderover":
+			next = OGLDocumentation(OGLDocumentationType.MathML_munderover);
+			goto case "$$container$$"; 
+		case "msqrt":
+			next = OGLDocumentation(OGLDocumentationType.MathML_msqrt);
+			goto case "$$container$$"; 
+
 		case "csymbol":
 			next = OGLDocumentation(OGLDocumentationType.MathML_csymbol);
 			goto case "$$container$$"; 

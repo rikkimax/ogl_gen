@@ -11,15 +11,13 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 	OGLFunctionFamily[] ret;
 
 	foreach(string entry; dirEntries(FilesLocation, FileGlob, SpanMode.shallow)) {
-		//if (entry == FilesLocation ~ "glVertexAttrib.xml")
-			ret ~= OGLFunctionFamily(entry, entry[FilesLocation.length .. $-4]);
+		string name = entry[FilesLocation.length .. $-4];
+		if (name.length > 3 && name[0 .. 3] != "glX")
+			ret ~= OGLFunctionFamily(entry, name);
 	}
 
 	foreach(ref family; ret) {
 		family.functions = family.readInFunctions;
-
-		import std.stdio;
-		//writeln(family);
 	}
 
 	return ret;
