@@ -110,3 +110,14 @@ struct OGLDocumentation {
 	OGLDocumentation[] value_children;
 	int value_numcols;
 }
+
+struct OGLEnumGroup {
+	string name;
+	bool isBitmask;
+	OGLEnum[] enums;
+}
+
+struct OGLEnum {
+	string name;
+	string value;
+}

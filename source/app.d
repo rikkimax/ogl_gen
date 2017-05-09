@@ -3,12 +3,14 @@ import defs;
 
 void main() {
 	OGLFunctionFamily[] functionFamilies;
+	OGLEnumGroup[] enums;
 
 	// load up documentation first for the core profiles
 
 	functionFamilies.core_4_5_families;
 	functionFamilies.core_3_families;
-	//functionFamilies.core_2_families;
+	functionFamilies.core_2_families;
+	functionFamilies.spec_families(enums);
 
 	// now that we have documentation for the core profiles
 	//  lets try and load up all functions
@@ -18,10 +20,10 @@ void main() {
 	import printers;
 	//functionFamilies.print_everything;
 	functionFamilies.print_only_with_errors;
-	functionFamilies.print_misc_info;
+	functionFamilies.print_misc_info(enums);
 
 	import codegen_d;
-	functionFamilies.gencode_d("out.d", "opengl.bindings", false, "GL");
+	functionFamilies.gencode_d(enums, "out.d", "opengl.bindings", false, "GL");
 }
 
 void addAnyNewFunction_Family(ref OGLFunctionFamily[] ctx, OGLFunctionFamily[] toAdd) {
@@ -81,4 +83,10 @@ void core_2_families(ref OGLFunctionFamily[] functionFamilies) {
 	import core_2;
 	
 	functionFamilies.addAnyNewFunction_Family(readInFunctionFamilies);
+}
+
+void spec_families(ref OGLFunctionFamily[] functionFamilies, ref OGLEnumGroup[] enums) {
+	import spec;
+	
+	functionFamilies.addAnyNewFunction_Family(readInFunctionFamilies(enums));
 }

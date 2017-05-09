@@ -253,19 +253,29 @@ bool haveAnErrorNode(ref OGLDocumentation ctx) {
 	}
 }
 
-void print_misc_info(OGLFunctionFamily[] familyOfFunctions) {
+void print_misc_info(OGLFunctionFamily[] familyOfFunctions, OGLEnumGroup[] enums) {
 	import std.stdio : writeln;
 	
 	writeln("Information:");
 	
-	uint numFunctions;
-	foreach(family; familyOfFunctions) {
+	uint numFunctions, numGroupedEnums, numGroupEnum, numEnums;
+	foreach(family; familyOfFunctions)
 		numFunctions += family.functions.length;
+	foreach(grp; enums) {
+		if (grp.name.length > 0) {
+			numGroupedEnums++;
+			numGroupEnum += grp.enums.length;
+		}
+
+		numEnums += grp.enums.length;
 	}
-	
+
 	writeln("\tThere is a total of ", familyOfFunctions.length, " function families loaded.");
 	writeln("\tOf these there are a total of ", numFunctions, " functions these families provide.");
-	
+	writeln("\tThere is a total of ", numGroupedEnums, " enums groups loaded.");
+	writeln("\tOf these there are a total of ", numGroupEnum, " enums in these groups.");
+	writeln("\tIn total there are ", numEnums, " number of enums in total.");
+
 	writeln;
 }
 

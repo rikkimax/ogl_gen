@@ -8,5 +8,7 @@
 	},
 	"description": "A minimal D application.",
 	"copyright": "Copyright © 2016, rikki",
-	"license": "Boost"
+	"license": "Boost",
+
+	"stringImportPaths": ["templates"]
 }
