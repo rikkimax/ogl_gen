@@ -1,4 +1,4 @@
-﻿import std.traits : Unqual;
+import std.traits : Unqual;
 
 alias int64_t = long;
 alias uint64_t = ulong;
