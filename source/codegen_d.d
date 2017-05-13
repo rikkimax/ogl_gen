@@ -57,7 +57,7 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
  */\n"[1 .. $];
 	}
 
-	ret ~= import("D.d");
+	ret ~= import("D.d").removeUnicodeBOM;
 	ret ~= "\n";
 
 	foreach(grp; enums) {
