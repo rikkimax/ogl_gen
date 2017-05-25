@@ -88,5 +88,5 @@ void core_2_families(ref OGLFunctionFamily[] functionFamilies) {
 void spec_families(ref OGLFunctionFamily[] functionFamilies, ref OGLEnumGroup[] enums) {
 	import spec;
 	
-	functionFamilies.addAnyNewFunction_Family(readInFunctionFamilies(enums));
+	readInFunctionFamilies(enums, functionFamilies);
 }

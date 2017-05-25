@@ -61,42 +61,17 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 	ret ~= "\n";
 
 	foreach(grp; enums) {
-		if (grp.name.length > 0) {
-			ret ~= "///\n";
-
-			if (grp.isBitmask) {
-				ret ~= "@Bitmaskable\n";
-			}
-
-			ret ~= "enum ";
-			ret ~= grp.name;
-			ret ~= " {\n";
-
-			foreach(i, e; grp.enums) {
-				if (i > 0)
-					ret ~= ",\n";
-
-				ret ~= "\t///\n\t" ~ e.name;
+		foreach(e; grp.enums) {
+			if (e.value !is null) {
+				ret ~= "///\nenum ";
+				ret ~= e.name;
 				ret ~= " = ";
+
 				if (e.value.length > 2 && e.value[0 .. 2] != "0x")
 					ret ~= "0x";
 				ret ~= e.value;
+				ret ~= ";\n";
 			}
-
-			ret ~= "\n}\n";
-		}
-	}
-	ret ~= "\n";
-	foreach(grp; enums) {
-		foreach(e; grp.enums) {
-			ret ~= "///\nenum ";
-			ret ~= e.name;
-			ret ~= " = ";
-
-			if (e.value.length > 2 && e.value[0 .. 2] != "0x")
-				ret ~= "0x";
-			ret ~= e.value;
-			ret ~= ";\n";
 		}
 	}
 	ret ~= "\n";
@@ -106,6 +81,61 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 		ret ~= "struct ";
 		ret ~= containerStruct;
 		ret ~= " {\n";
+	}
+
+	foreach(grp; enums) {
+		if (grp.name.length > 0) {
+			bool haveAnyValid;
+			foreach(e; grp.enums) {
+				if (e.value !is null) {
+					haveAnyValid = true;
+				}
+			}
+			if (!haveAnyValid)
+				continue;
+
+			ret ~= prefixContainer;
+			ret ~= "\t///\n\t";
+			
+			if (grp.isBitmask) {
+				ret ~= prefixContainer;
+				ret ~= "@Bitmaskable\n\t";
+			}
+			
+			ret ~= prefixContainer;
+			ret ~= "enum ";
+			ret ~= grp.name;
+			ret ~= " {\n";
+			
+			size_t i;
+			foreach(e; grp.enums) {
+				if (e.value !is null) {
+					if (i > 0)
+						ret ~= ",\n";
+					
+					ret ~= prefix;
+					ret ~= "\t///\n\t";
+					
+					ret ~= prefix;
+					if (e.name.length > 3 && e.name[0 .. 3] == "GL_") {
+						ret ~= e.name[3 .. $].makeValidCIdentifier;
+					} else {
+						ret ~= e.name;
+					}
+					
+					ret ~= " = ";
+					if (e.value.length > 2 && e.value[0 .. 2] != "0x")
+						ret ~= "0x";
+					
+					ret ~= e.value;
+					i++;
+				}
+			}
+
+			ret ~= "\n\t";
+			ret ~= prefixContainer;
+			ret ~= "}\n\n";
+		}
 	}
 
 	if (isStatic) {
