@@ -1,29 +1,67 @@
 import std.stdio : writeln;
 import defs;
 
-void main() {
+string _gen_D_filename, _gen_D_module, _gen_D_wrapperName;
+bool _gen_D_static;
+
+bool _get_core_4_5, _get_core_3, _get_core_2, _get_spec;
+bool _debug_everything, _debug_errors;
+
+void main(string[] args) {
+	import std.getopt;
+
+	auto helpInformation = getopt(
+		args,
+
+		"gen-d", &_gen_D_filename,
+		"gen-d-module", &_gen_D_module,
+		"gen-d-wrapperName", &_gen_D_wrapperName,
+		"gen-d-static", &_gen_D_static,
+
+		"load-core-4.5", &_get_core_4_5,
+		"load-core-3", &_get_core_3,
+		"load-core-2", &_get_core_2,
+		"load-spec", &_get_spec,
+	);
+
+	if (helpInformation.helpWanted || (_gen_D_module.length == 0)) {
+		defaultGetoptPrinter("", helpInformation.options);
+	} else {
+		run();
+	}
+}
+
+void run() {
+	import printers;
+	import codegen_d;
+
 	OGLFunctionFamily[] functionFamilies;
 	OGLEnumGroup[] enums;
-
+	
 	// load up documentation first for the core profiles
 
-	functionFamilies.core_4_5_families;
-	functionFamilies.core_3_families;
-	functionFamilies.core_2_families;
-	functionFamilies.spec_families(enums);
-
+	if (_get_core_4_5)
+		functionFamilies.core_4_5_families;
+	if (_get_core_3)
+		functionFamilies.core_3_families;
+	if (_get_core_2)
+		functionFamilies.core_2_families;
+	if (_get_spec)
+		functionFamilies.spec_families(enums);
+	
 	// now that we have documentation for the core profiles
 	//  lets try and load up all functions
 	//  and set the extension that introduces them via a "uda"
 
 	// print
-	import printers;
-	//functionFamilies.print_everything;
-	functionFamilies.print_only_with_errors;
+	if (_debug_everything)
+		functionFamilies.print_everything;
+	if (_debug_errors)
+		functionFamilies.print_only_with_errors;
 	functionFamilies.print_misc_info(enums);
 
-	import codegen_d;
-	functionFamilies.gencode_d(enums, "out.d", "opengl.bindings", false, "GL");
+	if (_gen_D_filename.length > 0)
+		functionFamilies.gencode_d(enums, _gen_D_filename, _gen_D_module, _gen_D_static, _gen_D_wrapperName);
 }
 
 void addAnyNewFunction_Family(ref OGLFunctionFamily[] ctx, OGLFunctionFamily[] toAdd) {

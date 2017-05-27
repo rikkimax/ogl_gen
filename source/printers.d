@@ -338,7 +338,7 @@ void print_everything(OGLFunctionFamily[] functionFamilies, string forName=null)
 void print_only_with_errors(OGLFunctionFamily[] functionFamilies) {
 	import std.stdio : write, writeln;
 
-	writeln("Families:");
+	writeln("Errors, Families:");
 	foreach(family; functionFamilies) {
 		if (!family.haveAnErrorNode) continue;
 		
