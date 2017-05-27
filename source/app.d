@@ -22,6 +22,9 @@ void main(string[] args) {
 		"load-core-3", &_get_core_3,
 		"load-core-2", &_get_core_2,
 		"load-spec", &_get_spec,
+
+		"debug-everything", &_debug_everything,
+		"debug-errors", &_debug_errors
 	);
 
 	if (helpInformation.helpWanted || (_gen_D_module.length == 0)) {
