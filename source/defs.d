@@ -23,6 +23,9 @@ struct OGLFunction {
 	
 	string[] argTypes;
 	string[] argNames;
+
+	OGLIntroducedIn introducedIn;
+	string introducedInExtension;
 }
 
 struct OGLParameter {
@@ -32,7 +35,13 @@ struct OGLParameter {
 
 enum OGLIntroducedIn : ushort {
 	Unknown,
-	V2P0 = 20,
+	V1P0 = 10,
+	V1P1 = 11,
+	V1P2 = 12,
+	V1P3 = 13,
+	V1P4 = 14,
+	V1P5 = 15,
+	V2P0 = 25,
 	V2P1 = 21,
 	V2P2 = 22,
 	V3P0 = 30,

@@ -1,5 +1,6 @@
 ﻿module core_3;
 import defs;
+import util;
 
 enum FilesLocation = "man3/";
 enum FileGlob = "gl*.xml";
@@ -27,7 +28,7 @@ OGLFunctionFamily[] readInFunctionFamilies() {
 OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	import std.file : readText;
 	import std.experimental.xml;
-	import core_4_5 : fixTypePointer, evaluateDocs;
+	import core_4_5 : evaluateDocs;
 
 	string raw_input = readText(family.fromFilename);
 	OGLFunction[] ret;

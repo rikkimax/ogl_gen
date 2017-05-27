@@ -1,5 +1,6 @@
 ﻿module spec;
 import defs;
+import util;
 
 enum IndexFile = "api/gl.xml";
 enum PrependXMLFileLocation = "api/";
@@ -21,8 +22,7 @@ void readInFunctionFamilies(ref OGLEnumGroup[] enums, ref OGLFunctionFamily[] fa
 
 	auto rootNode = dom.firstChild;
 
-	OGLFunction[] ret_Functions;
-	handleChildren(rootNode, enums, ret_Functions);
+	handleChildren(rootNode, enums, families);
 
 	debug(OGL_Spec) {
 		import std.stdio;
@@ -36,7 +36,7 @@ void readInFunctionFamilies(ref OGLEnumGroup[] enums, ref OGLFunctionFamily[] fa
 	}
 }
 
-void handleChildren(T)(ref T rootNode, ref OGLEnumGroup[] enums, ref OGLFunction[] ret_Functions) {
+void handleChildren(T)(ref T rootNode, ref OGLEnumGroup[] enums, ref OGLFunctionFamily[] ret_Functions) {
 	OGLEnumGroup* emptyEnumGroup;
 	foreach(ref e; enums) {
 		if (e.name is null)
@@ -47,12 +47,23 @@ void handleChildren(T)(ref T rootNode, ref OGLEnumGroup[] enums, ref OGLFunction
 		emptyEnumGroup = &enums[$-1];
 	}
 
+	OGLFunctionFamily* emptyFunctionFamily;
+	foreach(ref fg; ret_Functions) {
+		if (fg.familyOfFunction is null)
+			emptyFunctionFamily = &fg;
+	}
+	if (emptyFunctionFamily is null) {
+		ret_Functions ~= OGLFunctionFamily();
+		emptyFunctionFamily = &ret_Functions[$-1];
+	}
+
 F1: foreach(child; rootNode.childNodes) {
 		// Structure:
 		//  - comment
 		//  - types
 		//  - groups (enums)
 		//  - enums (value)
+		//  - commands
 		//  - feature
 		//  - extensions
 
@@ -132,6 +143,157 @@ F1: foreach(child; rootNode.childNodes) {
 
 				if (group !is null)
 					group.isBitmask = groupType == "bitmask";
+				break;
+
+			case "commands":
+			F7: foreach(child2; child.childNodes) {
+					if (child2.nodeName == "command") {
+						string returnType, name;
+						string[] argTypes, argNames;
+						size_t argI;
+
+						argTypes.length = child2.childNodes.length-1;
+						argNames.length = child2.childNodes.length-1;
+
+						foreach(child3; child2.childNodes) {
+							switch(child3.nodeName) {
+								case "proto":
+									size_t i;
+									foreach(child4; child3.childNodes) {
+										if (child4.nodeName == "name")
+											break;
+										
+										if (i > 0)
+											returnType ~= " ";
+										
+										if (child4.nodeValue !is null) {
+											returnType ~= child4.nodeValue.fixTypePointer;
+										}
+										
+										if (child4.childNodes.length > 0) {
+											returnType ~= child4.firstChild.nodeValue.fixTypePointer;
+										}
+										
+										i++;
+									}
+
+									returnType = returnType.fixTypePointer;
+
+									name = child3.lastChild.firstChild.nodeValue;
+									break;
+								case "param":
+									size_t i;
+									foreach(child4; child3.childNodes) {
+										if (child4.nodeName == "name")
+											break;
+
+										if (i > 0)
+											argTypes[argI] ~= " ";
+
+										if (child4.nodeValue !is null) {
+											argTypes[argI] ~= child4.nodeValue.fixTypePointer;
+										}
+
+										if (child4.childNodes.length > 0) {
+											argTypes[argI] ~= child4.firstChild.nodeValue.fixTypePointer;
+										}
+
+										i++;
+									}
+
+									argTypes[argI] = argTypes[argI].fixTypePointer;
+
+									foreach(child4; child3.childNodes) {
+										if (child4.nodeName == "name") {
+											argNames[argI] = child4.firstChild.nodeValue;
+											break;
+										}
+									}
+									argI++;
+									break;
+								default:
+									argTypes.length--;
+									argNames.length--;
+									break;
+							}
+						}
+
+						foreach(ref fg; ret_Functions) {
+							foreach(ref fe; fg.functions) {
+								if (fe.name == name) {
+									continue F7;
+								}
+							}
+						}
+
+						emptyFunctionFamily.functions ~= OGLFunction(returnType, name, argTypes, argNames);
+					}
+				}
+				break;
+
+			case "feature":
+				if (child.attributes.getNamedItem("api").nodeValue == "gl") {
+					string introducedInS = child.attributes.getNamedItem("number").nodeValue;
+
+					foreach(child2; child.childNodes) {
+					F8: foreach(child3; child2.childNodes) {
+							if (child3.nodeName == "command") {
+								string name = child3.attributes.getNamedItem("name").nodeValue;
+
+								foreach(ref fg; ret_Functions) {
+									foreach(ref fe; fg.functions) {
+										if (fe.name == name && fe.introducedIn == OGLIntroducedIn.Unknown) {
+											switch(introducedInS) {
+												case "1.0": fe.introducedIn = OGLIntroducedIn.V1P0; break;
+												case "1.1": fe.introducedIn = OGLIntroducedIn.V1P1; break;
+												case "1.2": fe.introducedIn = OGLIntroducedIn.V1P2; break;
+												case "1.3": fe.introducedIn = OGLIntroducedIn.V1P3; break;
+												case "1.4": fe.introducedIn = OGLIntroducedIn.V1P4; break;
+												case "1.5": fe.introducedIn = OGLIntroducedIn.V1P5; break;
+												case "2.0": fe.introducedIn = OGLIntroducedIn.V2P0; break;
+												case "2.1": fe.introducedIn = OGLIntroducedIn.V2P1; break;
+												case "3.0": fe.introducedIn = OGLIntroducedIn.V3P0; break;
+												case "3.1": fe.introducedIn = OGLIntroducedIn.V3P1; break;
+												case "3.2": fe.introducedIn = OGLIntroducedIn.V3P2; break;
+												case "3.3": fe.introducedIn = OGLIntroducedIn.V3P3; break;
+												case "4.0": fe.introducedIn = OGLIntroducedIn.V4P0; break;
+												case "4.1": fe.introducedIn = OGLIntroducedIn.V4P1; break;
+												case "4.2": fe.introducedIn = OGLIntroducedIn.V4P2; break;
+												case "4.3": fe.introducedIn = OGLIntroducedIn.V4P3; break;
+												case "4.4": fe.introducedIn = OGLIntroducedIn.V4P4; break;
+												case "4.5": fe.introducedIn = OGLIntroducedIn.V4P5; break;
+												default: break;
+											}
+											continue F8;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				break;
+
+			case "extensions":
+				foreach(child2; child.childNodes) {
+					string extName = child2.attributes.getNamedItem("name").nodeValue;
+					
+					foreach(child3; child2.childNodes) {
+					F9: foreach(child4; child3.childNodes) {
+							if (child4.nodeName == "command") {
+								string name = child4.attributes.getNamedItem("name").nodeValue;
+								foreach(ref fg; ret_Functions) {
+									foreach(ref fe; fg.functions) {
+										if (fe.name == name && fe.introducedInExtension is null) {
+											fe.introducedInExtension = extName;
+											continue F9;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 				break;
 
 			default:

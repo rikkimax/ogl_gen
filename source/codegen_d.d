@@ -60,18 +60,24 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 	ret ~= import("D.d").removeUnicodeBOM;
 	ret ~= "\n";
 
-	foreach(grp; enums) {
-		foreach(e; grp.enums) {
-			if (e.value !is null) {
-				ret ~= "///\nenum ";
-				ret ~= e.name;
-				ret ~= " = ";
+	import std.algorithm;
+	import std.range : array;
 
-				if (e.value.length > 2 && e.value[0 .. 2] != "0x")
-					ret ~= "0x";
-				ret ~= e.value;
-				ret ~= ";\n";
-			}
+	foreach(e; enums
+		.map!(a => a.enums)
+		.joiner
+		.array
+		.sort!((a, b) => a.name < b.name)
+		.uniq!((a, b) => a.name == b.name)) {
+		if (e.value !is null) {
+			ret ~= "///\nenum ";
+			ret ~= e.name;
+			ret ~= " = ";
+
+			if (e.value.length > 2 && e.value[0 .. 2] != "0x")
+				ret ~= "0x";
+			ret ~= e.value;
+			ret ~= ";\n";
 		}
 	}
 	ret ~= "\n";
@@ -160,14 +166,25 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 				ret ~= "/// Ditto\n";
 			}
 
-			if (family.introducedIn != OGLIntroducedIn.Unknown) {
+			OGLIntroducedIn introducedIn = family.introducedIn;
+			if (func.introducedIn != OGLIntroducedIn.Unknown)
+				introducedIn = func.introducedIn;
+
+			if (introducedIn != OGLIntroducedIn.Unknown) {
 				ret ~= prefix;
 				ret ~= "@OpenGL_Version(OGLIntroducedIn.";
-				ret ~= family.introducedIn.text;
+				ret ~= introducedIn.text;
 				ret ~= ")\n";
 			} else {
 				ret ~= prefix;
 				ret ~= "@OpenGL_Version(OGLIntroducedIn.Unknown)\n";
+			}
+
+			if (func.introducedInExtension !is null) {
+				ret ~= prefix;
+				ret ~= "@OpenGL_Extension(\"";
+				ret ~= func.introducedInExtension;
+				ret ~= "\")\n";
 			}
 
 			ret ~= prefix;
@@ -195,11 +212,20 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 					ret ~= func.argTypes[j];
 					if (arg !is null) {
 						ret ~= " ";
-						
-						if (arg == "ref")
-							ret ~= "ref_";
-						else
-							ret ~= arg;
+
+						switch(arg) {
+							case "ref":
+								ret ~= "ref_";
+								break;
+							case "in":
+								ret ~= "in_";
+								break;
+							case "out":
+								ret ~= "out_";
+								break;
+							default:
+								ret ~= arg;
+						}
 					}
 				}
 			}
@@ -574,32 +600,4 @@ void genDDOC(T)(ref T ret, string functionFamily, ref OGLDocumentation ctx, stri
 				
 		}
 	}
-}
-
-pure string replace(string text, string oldText, string newText, bool caseSensitive = true, bool first = false) {
-	import std.uni : toLower;
-
-	string ret;
-	string tempData;
-	bool stop;
-	foreach(char c; text) {
-		if (tempData.length > oldText.length && !stop) {
-			ret ~= tempData;
-			tempData = "";
-		}
-		if (((caseSensitive && oldText[0 .. tempData.length] != tempData) || (!caseSensitive && oldText[0 .. tempData.length].toLower() != tempData.toLower())) && !stop) {
-			ret ~= tempData;
-			tempData = "";
-		}
-		tempData ~= c;
-		if (((caseSensitive && tempData == oldText) || (!caseSensitive && tempData.toLower() == oldText.toLower())) && !stop) {
-			ret ~= newText;
-			tempData = "";
-			stop = first;
-		}
-	}
-	if (tempData != "") {
-		ret ~= tempData;	
-	}
-	return ret;
 }

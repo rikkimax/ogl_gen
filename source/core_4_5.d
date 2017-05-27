@@ -1,6 +1,7 @@
 ﻿module core_4_5;
 import std.experimental.xml.dom : Node;
 import defs;
+import util;
 
 enum IndexFile = "man4/html/index.php";
 enum PrependXMLFileLocation = "man4/";
@@ -254,48 +255,6 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 	//
 	
 	return ret;
-}
-
-string fixTypePointer(string input) {
-	import std.string : strip;
-	if (input is null)
-		return null;
-		
-	char[] buffer, buffer2;
-	buffer.length = input.length;
-	buffer[] = input[];
-	
-	size_t i;
-	while(i < buffer.length) {
-		char c = buffer[i];
-		char c2 = '\0';
-		
-		if (i + 1 < buffer.length)
-			c2 = buffer[i + 1];
-		
-		if (c == ' ') {
-			if (c2 == '*') {
-				buffer[i] = '*';
-				buffer[i + 1] = ' ';
-			}
-		}
-	
-		i++;
-	}
-	
-	string ret = cast(string)buffer.strip;
-	if (ret == "const GLvoid*  const*")
-		return "const(const(GLvoid*)*)";
-	else if (ret == "GLuitn" || ret == "Gluint")
-		return "GLuint";
-	else if (ret == "Glenum*")
-		return "GLenum*";
-	else if (ret == "const Glenum*")
-		return "const GLenum*";
-	else if (ret == "DEBUGPROC")
-		return "GLDEBUGPROC";
-	else
-		return ret;
 }
 
 void evaluateDocs(ref OGLDocumentation parentContainer, Node!string current) {

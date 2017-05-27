@@ -48,6 +48,23 @@ void addAnyNewFunction_Family(ref OGLFunctionFamily[] ctx, OGLFunctionFamily[] t
 				}
 			}
 
+			OGLFunction[] functions;
+			functions.length = toAddFamily.functions.length;
+			size_t i;
+		F3: foreach(ref toAddFunc; toAddFamily.functions) {
+				foreach(ref gf; ctx) {
+					foreach(fff; gf.functions) {
+						if (fff.name == toAddFunc.name) {
+							functions.length--;
+							continue F3;
+						}
+					}
+				}
+				functions[i] = toAddFunc;
+				i++;
+			}
+			toAddFamily.functions = functions;
+
 			if (alreadyExists) {
 				// ok so as it turns out this family is already in 
 				//  which is kinda a bummer, lets be honest.
