@@ -13,22 +13,22 @@ void main(string[] args) {
 	auto helpInformation = getopt(
 		args,
 
-		"gen-d", &_gen_D_filename,
-		"gen-d-module", &_gen_D_module,
-		"gen-d-wrapperName", &_gen_D_wrapperName,
-		"gen-d-static", &_gen_D_static,
+		"f|gen-d", "Filename to write generated code to", &_gen_D_filename,
+		"m|gen-d-module", "D Module name of the generated code", &_gen_D_module,
+		"w|gen-d-wrapperName", "Optional parameter to wrap all code in a struct", &_gen_D_wrapperName,
+		"s|gen-d-static", "Generate static bindings instead of dynamic bindings", &_gen_D_static,
 
-		"load-core-4.5", &_get_core_4_5,
-		"load-core-3", &_get_core_3,
-		"load-core-2", &_get_core_2,
-		"load-spec", &_get_spec,
+		"4|load-core-4.5", "Include core GL 4.5 functions", &_get_core_4_5,
+		"3|load-core-3", "Include core GL 3.x functions", &_get_core_3,
+		"2|load-core-2", "Include legacy GL functions", &_get_core_2,
+		"b|load-spec", "Include base GL types, enums and extension functions", &_get_spec,
 
 		"debug-everything", &_debug_everything,
 		"debug-errors", &_debug_errors
 	);
 
 	if (helpInformation.helpWanted || (_gen_D_module.length == 0)) {
-		defaultGetoptPrinter("", helpInformation.options);
+		defaultGetoptPrinter("Automatic OpenGL D wrapper generator", helpInformation.options);
 	} else {
 		run();
 	}
