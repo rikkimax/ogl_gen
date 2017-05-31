@@ -76,6 +76,8 @@ string fixTypePointer(string input) {
 	if (input is null)
 		return null;
 
+	input = input.strip;
+
 	if (input.length > 6 && input[0 .. 6] == "struct")
 		input = input[6 .. $];
 
@@ -109,9 +111,11 @@ string fixTypePointer(string input) {
 	else if (ret == "Glenum*")
 		return "GLenum*";
 	else if (ret == "const Glenum*")
-		return "const GLenum*";
+		return "const(GLenum)*";
 	else if (ret == "DEBUGPROC")
 		return "GLDEBUGPROC";
+	else if (ret == "const GLubyte*" || ret == "const GLubyte *")
+		return "const(GLubyte)*";
 	else
 		return ret;
 }

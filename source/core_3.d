@@ -131,7 +131,7 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 					continue F2;
 			}
 
-			ret[i].returnType = funcprototype.firstChild.firstChild.nodeValue[0 .. $-1].fixTypePointer;
+			ret[i].returnType = funcprototype.firstChild.firstChild.nodeValue.fixTypePointer;
 			ret[i].name = funcprototype.firstChild.lastChild.firstChild.nodeValue;
 
 			ret[i].argNames.length = funcprototype.childNodes.length;
