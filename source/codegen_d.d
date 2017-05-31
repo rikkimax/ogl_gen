@@ -70,14 +70,14 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 		.sort!((a, b) => a.name < b.name)
 		.uniq!((a, b) => a.name == b.name)) {
 		if (e.value !is null) {
-			ret ~= "///\nenum ";
+			ret ~= "enum ";
 			ret ~= e.name;
 			ret ~= " = ";
 
 			if (e.value.length > 2 && e.value[0 .. 2] != "0x")
 				ret ~= "0x";
 			ret ~= e.value;
-			ret ~= ";\n";
+			ret ~= "; ///\n";
 		}
 	}
 	ret ~= "\n";
