@@ -37,24 +37,24 @@ void readInFunctionFamilies(ref OGLEnumGroup[] enums, ref OGLFunctionFamily[] fa
 }
 
 void handleChildren(T)(ref T rootNode, ref OGLEnumGroup[] enums, ref OGLFunctionFamily[] ret_Functions) {
-	OGLEnumGroup* emptyEnumGroup;
-	foreach(ref e; enums) {
+	size_t emptyEnumGroup = -1;
+	foreach(i, ref e; enums) {
 		if (e.name is null)
-			emptyEnumGroup = &e;
+			emptyEnumGroup = i;
 	}
-	if (emptyEnumGroup is null) {
+	if (emptyEnumGroup == -1) {
+		emptyEnumGroup = enums.length;
 		enums ~= OGLEnumGroup();
-		emptyEnumGroup = &enums[$-1];
 	}
 
-	OGLFunctionFamily* emptyFunctionFamily;
-	foreach(ref fg; ret_Functions) {
+	size_t emptyFunctionFamily = -1;
+	foreach(i, ref fg; ret_Functions) {
 		if (fg.familyOfFunction is null)
-			emptyFunctionFamily = &fg;
+			emptyFunctionFamily = i;
 	}
-	if (emptyFunctionFamily is null) {
+	if (emptyFunctionFamily == -1) {
+		emptyFunctionFamily = ret_Functions.length;
 		ret_Functions ~= OGLFunctionFamily();
-		emptyFunctionFamily = &ret_Functions[$-1];
 	}
 
 F1: foreach(child; rootNode.childNodes) {
@@ -136,7 +136,7 @@ F1: foreach(child; rootNode.childNodes) {
 						if (wasSet)
 							continue F6;
 						
-						emptyEnumGroup.enums ~= OGLEnum(name, value);
+						enums[emptyEnumGroup].enums ~= OGLEnum(name, value);
 						continue F6;
 					}
 				}
@@ -226,7 +226,7 @@ F1: foreach(child; rootNode.childNodes) {
 							}
 						}
 
-						emptyFunctionFamily.functions ~= OGLFunction(returnType, name, argTypes, argNames);
+						ret_Functions[emptyFunctionFamily].functions ~= OGLFunction(returnType, name, argTypes, argNames);
 					}
 				}
 				break;
