@@ -151,6 +151,45 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 
 	foreach(k, family; functionFamilies) {
 		foreach(i, func; family.functions) {
+			string argsSignature;
+			if (func.argNames.length == 1 && func.argTypes[0] == "void") {
+			} else {
+				foreach(j, arg; func.argNames) {
+					if (j > 0)
+						argsSignature ~= ", ";
+
+					argsSignature ~= func.argTypes[j];
+					if (arg !is null) {
+						argsSignature ~= " ";
+
+						switch(arg) {
+							case "ref":
+								argsSignature ~= "ref_";
+								break;
+							case "in":
+								argsSignature ~= "in_";
+								break;
+							case "out":
+								argsSignature ~= "out_";
+								break;
+							default:
+								argsSignature ~= arg;
+						}
+					}
+				}
+			}
+
+			if (!isStatic) {
+				ret ~= prefix;
+				ret ~= "alias fn_";
+				ret ~= func.name;
+				ret ~= " = extern(C) ";
+				ret ~= func.returnType;
+				ret ~= " function(";
+				ret ~= argsSignature;
+				ret ~= ") @system @nogc nothrow;\n";
+			}
+
 			if (i == 0) {
 				ret ~= "\n";
 
@@ -190,52 +229,18 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 			ret ~= prefix;
 
 			if (!isStatic) {
-				ret ~= "extern(C) ";
-			}
-
-			ret ~= func.returnType;
-
-			if (isStatic) {
+				ret ~= "fn_";
+				ret ~= func.name;
+				ret ~= " ";
+				ret ~= func.name;
+				ret ~= ";\n";
+			} else {
+				ret ~= func.returnType;
 				ret ~= " ";
 				ret ~= func.name;
 				ret ~= "(";
-			} else {
-				ret ~= " function(";
-			}
-
-			if (func.argNames.length == 1 && func.argTypes[0] == "void") {
-			} else {
-				foreach(j, arg; func.argNames) {
-					if (j > 0)
-						ret ~= ", ";
-
-					ret ~= func.argTypes[j];
-					if (arg !is null) {
-						ret ~= " ";
-
-						switch(arg) {
-							case "ref":
-								ret ~= "ref_";
-								break;
-							case "in":
-								ret ~= "in_";
-								break;
-							case "out":
-								ret ~= "out_";
-								break;
-							default:
-								ret ~= arg;
-						}
-					}
-				}
-			}
-
-			if (isStatic) {
+				ret ~= argsSignature;
 				ret ~= ") @system @nogc nothrow;\n";
-			} else {
-				ret ~= ") @system @nogc nothrow ";
-				ret ~= func.name;
-				ret ~= ";\n";
 			}
 		}
 	}
