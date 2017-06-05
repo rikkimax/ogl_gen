@@ -71,11 +71,11 @@ struct _cl_context;
 struct _cl_event;
 
 ///
-alias GLDEBUGPROC = void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+alias GLDEBUGPROC = extern(C) void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const(GLchar)* message, void* userParam);
 ///
-alias GLDEBUGPROCARB = void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+alias GLDEBUGPROCARB = extern(C) void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const(GLchar)* message, void* userParam);
 ///
-alias GLDEBUGPROCKHR = void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+alias GLDEBUGPROCKHR = extern(C) void function(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const(GLchar)* message, void* userParam);
 
 ///
 alias GLintptrARB = ptrdiff_t;
@@ -87,7 +87,7 @@ alias GLint64EXT = int64_t;
 alias GLuint64EXT = uint64_t;
 
 ///
-alias GLDEBUGPROCAMD = void function(GLuint id, GLenum category, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+alias GLDEBUGPROCAMD = extern(C) void function(GLuint id, GLenum category, GLenum severity, GLsizei length, const(GLchar)* message, void* userParam);
 ///
 alias GLhalfNV = ushort;
 ///
@@ -100,7 +100,7 @@ struct GLUquadric;
 ///
 struct GLUtesselator;
 ///
-alias _GLUfuncptr = void function();
+alias _GLUfuncptr = extern(C) void function();
 
 struct OpenGL_Version {
 	OGLIntroducedIn from;
