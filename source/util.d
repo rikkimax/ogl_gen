@@ -72,7 +72,7 @@ unittest {
 }
 
 string fixTypePointer(string input) {
-	import std.string : strip;
+	import std.string : strip, startsWith;
 	if (input is null)
 		return null;
 
@@ -116,6 +116,8 @@ string fixTypePointer(string input) {
 		return "GLDEBUGPROC";
 	else if (ret == "const GLubyte*" || ret == "const GLubyte *")
 		return "const(GLubyte)*";
+	else if (ret.startsWith("const "))
+		return "const(" ~ ret[5 .. $] ~ ")";
 	else
 		return ret;
 }
