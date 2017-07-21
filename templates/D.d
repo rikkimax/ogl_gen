@@ -104,10 +104,12 @@ alias _GLUfuncptr = extern(C) void function();
 
 struct OpenGL_Version {
 	OGLIntroducedIn from;
+	alias from this;
 }
 
 struct OpenGL_Extension {
 	string name;
+	alias name this;
 }
 
 enum OGLIntroducedIn : ushort {
