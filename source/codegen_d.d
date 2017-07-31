@@ -146,7 +146,7 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 
 	if (isStatic) {
 		ret ~= prefixContainer;
-		ret ~= "extern(C) {\n";
+		ret ~= "extern(System) {\n";
 	}
 
 	foreach(k, family; functionFamilies) {
@@ -183,7 +183,7 @@ void gencode_d(OGLFunctionFamily[] functionFamilies, OGLEnumGroup[] enums, strin
 				ret ~= prefix;
 				ret ~= "alias fn_";
 				ret ~= func.name;
-				ret ~= " = extern(C) ";
+				ret ~= " = extern(System) ";
 				ret ~= func.returnType;
 				ret ~= " function(";
 				ret ~= argsSignature;
