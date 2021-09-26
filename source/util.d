@@ -1,7 +1,7 @@
 ﻿module util;
 
 const(char)[] removeUnicodeBOM(const(char)[] input) {
-	if (input.length >= 3 && input[0 .. 3] == x"ef bb bf") {
+	if (input.length >= 3 && input[0 .. 3] == "\xef\xbb\xbf") {
 		return input[3 .. $];
 	} else {
 		return input;
@@ -10,7 +10,7 @@ const(char)[] removeUnicodeBOM(const(char)[] input) {
 
 pure string replace(string text, string oldText, string newText, bool caseSensitive = true, bool first = false) {
 	import std.uni : toLower;
-	
+
 	string ret;
 	string tempData;
 	bool stop;
@@ -31,7 +31,7 @@ pure string replace(string text, string oldText, string newText, bool caseSensit
 		}
 	}
 	if (tempData != "") {
-		ret ~= tempData;	
+		ret ~= tempData;
 	}
 	return ret;
 }
@@ -84,25 +84,25 @@ string fixTypePointer(string input) {
 	char[] buffer, buffer2;
 	buffer.length = input.length;
 	buffer[] = input[];
-	
+
 	size_t i;
 	while(i < buffer.length) {
 		char c = buffer[i];
 		char c2 = '\0';
-		
+
 		if (i + 1 < buffer.length)
 			c2 = buffer[i + 1];
-		
+
 		if (c == ' ') {
 			if (c2 == '*') {
 				buffer[i] = '*';
 				buffer[i + 1] = ' ';
 			}
 		}
-		
+
 		i++;
 	}
-	
+
 	string ret = cast(string)buffer.strip;
 	if (ret == "const GLvoid*  const*" || ret == "const GLchar* const*" || ret == "const void* const*")
 		return "const(const(GLvoid*)*)";
