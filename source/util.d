@@ -119,7 +119,7 @@ string fixTypePointer(string input) {
 	else if (ret == "const GLubyte*" || ret == "const GLubyte *")
 		return "const(GLubyte)*";
 	else if (ret.startsWith("const "))
-		return "const(" ~ ret[5 .. $] ~ ")";
+		return "const(" ~ ret[6 .. $] ~ ")";
 	else
 		return ret;
 }
