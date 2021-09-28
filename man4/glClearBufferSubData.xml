@@ -33,7 +33,7 @@
                 <paramdef>GLuint <parameter>buffer</parameter></paramdef>
                 <paramdef>GLenum <parameter>internalformat</parameter></paramdef>
                 <paramdef>GLintptr <parameter>offset</parameter></paramdef>
-                <paramdef>GLsizei <parameter>size</parameter></paramdef>
+                <paramdef>GLsizeiptr <parameter>size</parameter></paramdef>
                 <paramdef>GLenum <parameter>format</parameter></paramdef>
                 <paramdef>GLenum <parameter>type</parameter></paramdef>
                 <paramdef>const void *<parameter>data</parameter></paramdef>
@@ -124,7 +124,7 @@
             <function>glClearBufferSubData</function> and
             <function>glClearNamedBufferSubData</function> fill a specified
             region of a buffer object's data store with data from client
-            memory. 
+            memory.
         </para>
         <para>
             <parameter>offset</parameter> and <parameter>size</parameter>

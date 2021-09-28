@@ -23,7 +23,7 @@
                 <paramdef>GLuint <parameter>first</parameter></paramdef>
                 <paramdef>GLsizei <parameter>count</parameter></paramdef>
                 <paramdef>const GLuint *<parameter>buffers</parameter></paramdef>
-                <paramdef>const GLuintptr *<parameter>offsets</parameter></paramdef>
+                <paramdef>const GLintptr *<parameter>offsets</parameter></paramdef>
                 <paramdef>const GLsizei *<parameter>strides</parameter></paramdef>
             </funcprototype>
             <funcprototype>
@@ -155,7 +155,7 @@
     </refsect1>
     <refsect1 xml:id="errors"><title>Errors</title>
         <para>
-            <constant>GL_INVALID_OPERATION</constant> is generated 
+            <constant>GL_INVALID_OPERATION</constant> is generated
             by <function>glBindVertexBuffers</function> if no vertex array
             object is bound.
         </para>

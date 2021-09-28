@@ -140,7 +140,7 @@
             values.
         </para>
         <para>
-            <constant>GL_INVALID_VALUE</constant> is generated if <parameter>target</parameter> is not a name returned from
+            <constant>GL_INVALID_VALUE</constant> is generated if <parameter>texture</parameter> is not a name returned from
             a previous call to <citerefentry><refentrytitle>glGenTextures</refentrytitle></citerefentry>.
         </para>
         <para>
@@ -194,7 +194,7 @@
             Copyright <trademark class="copyright"/> 2010-2014 Khronos Group.
             This document is licensed under the SGI
             Free Software B License. For details, see
-            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://oss.sgi.com/projects/FreeB/">http://oss.sgi.com/projects/FreeB/</link>.
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt">https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt</link>.
         </para>
     </refsect1>
 </refentry>

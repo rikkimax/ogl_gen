@@ -54,8 +54,9 @@
         <listitem>
           <para>Specifies the target to which the texture object is bound for
           <function>glCopyTexSubImage3D</function> function. Must be
-          <constant>GL_TEXTURE_3D</constant> or
-          <constant>GL_TEXTURE_2D_ARRAY</constant>.</para>
+          <constant>GL_TEXTURE_3D</constant>,
+          <constant>GL_TEXTURE_2D_ARRAY</constant> or
+          <constant>GL_TEXTURE_CUBE_MAP_ARRAY</constant>.</para>
         </listitem>
       </varlistentry>
 
@@ -418,7 +419,7 @@
             Copyright <trademark class="copyright"/> 2012-2014 Khronos Group.
             This document is licensed under the SGI
             Free Software B License. For details, see
-            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://oss.sgi.com/projects/FreeB/">http://oss.sgi.com/projects/FreeB/</link>.
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt">https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt</link>.
         </para>
     </refsect1>
 </refentry>

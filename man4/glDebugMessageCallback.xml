@@ -20,7 +20,7 @@
             <funcprototype>
                 <funcdef>void <function>glDebugMessageCallback</function></funcdef>
                 <paramdef>DEBUGPROC <parameter>callback</parameter></paramdef>
-                <paramdef>void * <parameter>userParam</parameter></paramdef>
+                <paramdef>const void * <parameter>userParam</parameter></paramdef>
             </funcprototype>
         </funcsynopsis>
     </refsynopsisdiv>
@@ -56,7 +56,7 @@
             GLenum severity,
             GLsizei length,
             const GLchar *message,
-            void *userParam);</programlisting>
+            const void *userParam);</programlisting>
         <para>
             This function is defined to have the same calling convention as
             the GL API functions. In most cases this is defined as
