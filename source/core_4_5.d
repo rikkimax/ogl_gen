@@ -159,7 +159,7 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 
 		switch(node.attributes.getNamedItem("xml:id").nodeValue) {
 			case "parameters":
-				auto varlistentries = node.childNodes[1].childNodes;
+				auto varlistentries = node.childNodes.item(1).childNodes;
 				family.docs_parameters.length = varlistentries.length;
 
 				i = 0;
@@ -229,7 +229,7 @@ OGLFunction[] readInFunctions(ref OGLFunctionFamily family) {
 
 			case "versions":
 				// refsect1.informaltable.tgroup.tbody.trow.xi:include
-				auto xiinclude = node.childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1];
+				auto xiinclude = node.childNodes.item(1).childNodes.item(0).childNodes.item(1).childNodes.item(0).childNodes.item(1);
 				string value = xiinclude.attributes.getNamedItem("xpointer").nodeValue;
 
 				// xpointer(/*/*[@role='20']/*)
