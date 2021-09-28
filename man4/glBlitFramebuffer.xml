@@ -128,7 +128,7 @@
             For <function>glBlitNamedFramebuffer</function>,
             <parameter>readFramebuffer</parameter> and
             <parameter>drawFramebuffer</parameter> are the names of the read
-            read and draw framebuffer objects respectively. If
+            and draw framebuffer objects respectively. If
             <parameter>readFramebuffer</parameter> or
             <parameter>drawFramebuffer</parameter> is zero, then the default
             read or draw framebuffer respectively is used.
@@ -252,9 +252,9 @@
             and the read buffer contains integer data.
         </para>
         <para>
-            <constant>GL_INVALID_OPERATION</constant> is generated if the
-            effective value of <constant>GL_SAMPLES</constant> for the read
-            and draw framebuffers is not identical.
+            <constant>GL_INVALID_OPERATION</constant> is generated if both the
+			read and draw framebuffers are multisampled, and their effective
+			values of <constant>GL_SAMPLES</constant> are not identical.
         </para>
         <para>
             <constant>GL_INVALID_OPERATION</constant> is generated if the

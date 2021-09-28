@@ -30,7 +30,7 @@
                 <paramdef>GLuint <parameter>end</parameter></paramdef>
                 <paramdef>GLsizei <parameter>count</parameter></paramdef>
                 <paramdef>GLenum <parameter>type</parameter></paramdef>
-                <paramdef>const GLvoid * <parameter>indices</parameter></paramdef>
+                <paramdef>const void * <parameter>indices</parameter></paramdef>
             </funcprototype>
         </funcsynopsis>
     </refsynopsisdiv>
@@ -103,7 +103,7 @@
     </refsect1>
     <refsect1 xml:id="description"><title>Description</title>
         <para>
-            <function>glDrawRangeElements</function> is a restricted form of <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>. <parameter>mode</parameter>, <parameter>start</parameter>, <parameter>end</parameter>,
+            <function>glDrawRangeElements</function> is a restricted form of <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>. <parameter>mode</parameter>,
             and <parameter>count</parameter> match the corresponding arguments to <citerefentry><refentrytitle>glDrawElements</refentrytitle></citerefentry>, with
             the additional constraint that all values in the arrays <parameter>count</parameter> must lie
             between <parameter>start</parameter> and <parameter>end</parameter>, inclusive.
@@ -234,7 +234,7 @@
             Copyright <trademark class="copyright"/> 2010-2014 Khronos Group.
             This document is licensed under the SGI Free Software B License.
             For details, see
-            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://oss.sgi.com/projects/FreeB/">http://oss.sgi.com/projects/FreeB/</link>.
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt">https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt</link>.
         </para>
     </refsect1>
 </refentry>

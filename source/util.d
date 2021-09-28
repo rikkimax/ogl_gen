@@ -106,6 +106,8 @@ string fixTypePointer(string input) {
 	string ret = cast(string)buffer.strip;
 	if (ret == "const GLvoid*  const*" || ret == "const GLchar* const*" || ret == "const void* const*")
 		return "const(const(GLvoid*)*)";
+	else if (ret == "const void*  const*")
+		return "const(void**)";
 	else if (ret == "GLuitn" || ret == "Gluint")
 		return "GLuint";
 	else if (ret == "Glenum*")

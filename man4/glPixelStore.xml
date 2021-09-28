@@ -1333,7 +1333,7 @@
             then if <parameter>param</parameter> is 0,
             the parameter is false;
             otherwise it is set to true.
-            If <parameter>pname</parameter> is a integer type parameter,
+            If <parameter>pname</parameter> is an integer type parameter,
             <parameter>param</parameter> is rounded to the nearest integer.
         </para>
         <para>
@@ -1443,7 +1443,7 @@
             Copyright <trademark class="copyright"/> 2010-2014 Khronos Group.
             This document is licensed under the SGI
             Free Software B License. For details, see
-            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://oss.sgi.com/projects/FreeB/">http://oss.sgi.com/projects/FreeB/</link>.
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt">https://khronos.org/registry/OpenGL-Refpages/LICENSES/LicenseRef-FreeB.txt</link>.
         </para>
     </refsect1>
 </refentry>

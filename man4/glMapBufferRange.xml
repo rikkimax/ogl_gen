@@ -29,7 +29,7 @@
                 <funcdef>void *<function>glMapNamedBufferRange</function></funcdef>
                 <paramdef>GLuint <parameter>buffer</parameter></paramdef>
                 <paramdef>GLintptr <parameter>offset</parameter></paramdef>
-                <paramdef>GLsizei <parameter>length</parameter></paramdef>
+                <paramdef>GLsizeiptr <parameter>length</parameter></paramdef>
                 <paramdef>GLbitfield <parameter>access</parameter></paramdef>
             </funcprototype>
         </funcsynopsis>
@@ -129,7 +129,7 @@
                     <para>
                         <constant>GL_MAP_PERSISTENT_BIT</constant> indicates
                         that the mapping is to be made in a persistent
-                        fassion and that the client intends to hold and use
+                        fashion and that the client intends to hold and use
                         the returned pointer during subsequent GL operation.
                         It is not an error to call drawing commands (render)
                         while buffers are mapped using this flag. It is an
