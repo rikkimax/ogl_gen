@@ -27,7 +27,7 @@ alias GLint64 = long;
 ///
 alias GLuint64 = ulong;
 ///
-alias GLsizei = uint;
+alias GLsizei = int;
 ///
 alias GLenum = uint;
 ///
